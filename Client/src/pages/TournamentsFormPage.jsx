@@ -120,7 +120,6 @@ export function TournamentsFormPage({ onClose, setRefetch }) {
           </Button>
           <Button color="warning" onClick={() => {
             onClose();
-            navigate("/tournaments");
             }}>
             Cancel
           </Button>

@@ -117,7 +117,7 @@ export function TournamentPage() {
                 <Button
                   color="danger"
                   onClick={async () => {
-                    const accepted = window.confirm("Confirm");
+                    const accepted = window.confirm("Are you sure you want to delete this tournament?");
                     if (accepted) {
                       await deleteTournament(id);
                       toast.success("Tournament deleted"), navigate("/tournaments");

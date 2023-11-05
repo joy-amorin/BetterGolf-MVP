@@ -1,12 +1,24 @@
-import { TournamentsList } from "../components/TournamentsList";
-import React from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import React, { useState } from "react";
+import {
+  Tabs,
+  Tab,
+  Card,
+  CardBody,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
 import { TournamentsFormPage } from "./TournamentsFormPage";
+import { TournamentsList } from "../components/TournamentsList";
 
 export function TournamentsPage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [size, setSize] = React.useState("md");
-  const [backdrop, setBackdrop] = React.useState("opaque"); // Agregar el estado backdrop
+  const [backdrop, setBackdrop] = React.useState("opaque");
   const sizes = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "full"];
   const backdrops = ["opaque", "blur", "transparent"];
   const handleOpen = (size) => {
@@ -18,15 +30,15 @@ export function TournamentsPage() {
   };
 
   const [refetch, setRefetch] = React.useState(true);
+  const [activeTab, setActiveTab] = useState("actives"); // Agrega el estado para controlar la pestaña activa
 
   const handleRefetch = () => {
     setRefetch((prevRefetch) => !prevRefetch);
   };
 
-
   return (
     <div>
-      <Button onPress={onOpen} color="primary" className="mb-3">
+      <Button onPress={onOpen}>
         Create Tournament
         <Modal
           isOpen={isOpen}
@@ -47,7 +59,16 @@ export function TournamentsPage() {
           </ModalContent>
         </Modal>
       </Button>
-      <TournamentsList refetch={refetch} />
+      <div className="text-center py-4">
+        <Tabs value={activeTab} onChange={setActiveTab}>
+          <Tab key="actives" title="Actives">
+            <TournamentsList refetch={refetch} status={activeTab.toLowerCase()} />
+          </Tab>
+          <Tab key="completes" title="Completes">
+            {/* Empty Tab content */}
+          </Tab>
+        </Tabs>
+      </div>
     </div>
   );
 }
