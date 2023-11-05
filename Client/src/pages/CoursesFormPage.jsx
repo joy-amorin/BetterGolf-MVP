@@ -6,7 +6,7 @@ import {
   deleteCourse,
   updateCourse,
   getCourseById,
-} from "../api/Courses.api";
+} from "../api/courses.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { Button, Input } from "@nextui-org/react";

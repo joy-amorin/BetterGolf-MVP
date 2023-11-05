@@ -10,60 +10,44 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { Button, Input, Select, SelectSection, SelectItem } from "@nextui-org/react";
 
-export function PlayersFormPage( { onclose, setRefetch } ) {
-	
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
-  const navigate = useNavigate();
-  const params = useParams();
-  const onSubmit = handleSubmit(async (data) => {
-    if (params.id) {
-      await updatePlayer(params.id, data);
-      toast.success("Updated player succesfully"),  navigate("/players"),
-        {
-          position: "bottom-right",
-          style: {
-            background: "#2fff00",
-            color: "#fff",
-          },
-        };
-    } else {
-      await createPlayer(data);
+export function PlayersFormPage({ onclose, setRefetch }) {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		setValue,
+	} = useForm();
+	const navigate = useNavigate();
+	const params = useParams();
+	const onSubmit = handleSubmit(async (data) => {
+		if (params.id) {
+			await updatePlayer(params.id, data);
+			toast.success("Updated player succesfully"), navigate("/players");
+		} else {
+			await createPlayer(data);
 			cambiarValor();
-      toast.success("Player created succesfully"),
-        {
-          position: "bottom-right",
-          style: {
-            background: "#2fff00",
-            color: "#fff",
-						
-          },
-        };
-			}
-  });
-	const cambiarValor = ( ) => {
-    setRefetch(true); 
-  };
+			toast.success("Player created succesfully");
+		}
+	});
+	const cambiarValor = () => {
+		setRefetch(true);
+	};
 
-  useEffect(() => {
-    async function loadPlayer() {
-      if (params.id) {
-        const res = await getPlayerById(params.id);
-        console.log(res.data);
-        setValue("name", res.data.name);
-        setValue("lastName", res.data.lastName);
-        setValue("matriculaAUG", res.data.matriculaAUG);
-        setValue("handicapIndex", res.data.handicapIndex);
-        setValue("birthdate", res.data.birthdate);
-        setValue("isWoman", res.data.isWoman);
-      }
-    }
-    loadPlayer();
-  }, []);
+	useEffect(() => {
+		async function loadPlayer() {
+			if (params.id) {
+				const res = await getPlayerById(params.id);
+				console.log(res.data);
+				setValue("name", res.data.name);
+				setValue("lastName", res.data.lastName);
+				setValue("matriculaAUG", res.data.matriculaAUG);
+				setValue("handicapIndex", res.data.handicapIndex);
+				setValue("birthdate", res.data.birthdate);
+				setValue("isWoman", res.data.isWoman);
+			}
+		}
+		loadPlayer();
+	}, []);
 
   return (
 		<div className="max-w-xl mx-auto">

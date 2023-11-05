@@ -1,6 +1,6 @@
 import { PlayersList } from "../components/PlayersList";
 import { Button } from "@nextui-org/react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 import { PlayersFormPage } from "./PlayersFormPage";
 import { useState } from "react";
 
