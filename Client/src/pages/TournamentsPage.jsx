@@ -61,10 +61,10 @@ export function TournamentsPage() {
       </Button>
       <div className="text-center py-4">
         <Tabs value={activeTab} onChange={setActiveTab}>
-          <Tab key="actives" title="Actives">
+          <Tab key="active" title="Active">
             <TournamentsList refetch={refetch} status={activeTab.toLowerCase()} />
           </Tab>
-          <Tab key="completes" title="Completes">
+          <Tab key="completed" title="Completed">
             {/* Empty Tab content */}
           </Tab>
         </Tabs>
