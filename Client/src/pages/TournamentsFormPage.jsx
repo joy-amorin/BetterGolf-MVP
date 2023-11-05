@@ -31,22 +31,10 @@ export function TournamentsFormPage({ onClose, setRefetch }) {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       await updateTournament(params.id, data);
-      toast.success("Tournament updated successfully", {
-        position: "bottom-right",
-        style: {
-          background: "#2fff00",
-          color: "#fff",
-        },
-      });
+      toast.success("Tournament updated successfully");
     } else {
       await createTournament(data);
-      toast.success("Tournament created successfully", {
-        position: "bottom-right",
-        style: {
-          background: "#2fff00",
-          color: "#fff",
-        },
-      });
+      toast.success("Tournament created successfully");
     }
     setRefetch();
     onClose();

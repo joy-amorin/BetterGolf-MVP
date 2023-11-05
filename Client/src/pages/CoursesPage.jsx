@@ -99,7 +99,7 @@ export function CoursesPage() {
                                 (course) => course.id !== course.id
                               );
                               setCourses(updatedcourses);
-                              toast.success("course deleted");
+                              toast.success("Course deleted");
                             }
                           }}
                         />

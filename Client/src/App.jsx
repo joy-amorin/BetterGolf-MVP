@@ -16,13 +16,24 @@ import { PlayersListForTournament } from "./components/PlayersListForTournament"
 import { CoursesAndHole } from "./pages/HolesInCourses";
 import { TournamentPage } from "./pages/TournamentPage.JSX";
 import { PlayerPage } from "./pages/PlayerPage";
+import { Divider } from "@nextui-org/react";
 
 
 function App() {
   return (
     <BrowserRouter>
     <div className="dark:bg-darkTheme-dark">
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "#18181b",
+            color: "#fff",
+          },
+        }}
+      />
       <Navigation />
+      <Divider />
       <div className="flex h-screen">
         <div className="w-[300px]">
           <SideBar />

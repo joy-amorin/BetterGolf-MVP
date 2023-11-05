@@ -23,27 +23,12 @@ export function PlayersFormPage( { onclose, setRefetch } ) {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       await updatePlayer(params.id, data);
-      toast.success("Updated player succesfully"),  navigate("/players"),
-        {
-          position: "bottom-right",
-          style: {
-            background: "#2fff00",
-            color: "#fff",
-          },
-        };
+      toast.success("Updated player succesfully"), navigate("/players");
     } else {
       await createPlayer(data);
 			cambiarValor();
-      toast.success("Player created succesfully"),
-        {
-          position: "bottom-right",
-          style: {
-            background: "#2fff00",
-            color: "#fff",
-						
-          },
-        };
-			}
+      toast.success("Player created succesfully");
+		};
   });
 	const cambiarValor = ( ) => {
     setRefetch(true); 
