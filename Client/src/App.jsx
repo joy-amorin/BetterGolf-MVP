@@ -22,7 +22,7 @@ import { Divider } from "@nextui-org/react";
 function App() {
   return (
     <BrowserRouter>
-    <div className="dark:bg-darkTheme-dark">
+    <div>
       <Toaster
         position="top-center"
         toastOptions={{
