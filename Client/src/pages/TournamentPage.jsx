@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   getTournamentById,
   getAllPlayersInTournament,
+  deleteTournament,
 } from "../api/tournaments.api";
 import { PlayersListForTournament } from "../components/PlayersListForTournament";
 import {
@@ -23,6 +24,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { TournamentsFormPage } from "./TournamentsFormPage";
+import { toast } from "react-hot-toast";
 
 export function TournamentPage() {
   const [tournament, setTournament] = useState(null);
@@ -90,7 +92,7 @@ export function TournamentPage() {
                   {tournament.description}
                 </p>
               </CardBody>
-              <CardFooter>
+              <CardFooter className="flex justify-between">
                 <Button onPress={() => handleOpen("")}>
                   Edit info
                   <Modal
@@ -112,6 +114,18 @@ export function TournamentPage() {
                     </ModalContent>
                   </Modal>
                 </Button>
+                <Button
+                  color="danger"
+                  onClick={async () => {
+                    const accepted = window.confirm("Confirm");
+                    if (accepted) {
+                      await deleteTournament(id);
+                      toast.success("Tournament deleted"), navigate("/tournaments");
+                    }
+                  }}
+                >
+                  Delete torunament
+                </Button>
               </CardFooter>
             </Card>
             <Divider className="my-3" />
@@ -120,9 +134,8 @@ export function TournamentPage() {
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
                     ? `No players on ${tournament.name}`
-                    : `${numOfPlayers} Player${
-                        numOfPlayers === 1 ? "" : "s"
-                      } on ${tournament.name}`}
+                    : `${numOfPlayers} Player${numOfPlayers === 1 ? "" : "s"
+                    } on ${tournament.name}`}
                 </h1>
               </CardHeader>
               <Divider />

@@ -18,7 +18,7 @@ import {
   Divider,
 } from "@nextui-org/react";
 
-export function TournamentsFormPage() {
+export function TournamentsFormPage({ onClose, setRefetch }) {
   const {
     register,
     handleSubmit,
@@ -48,7 +48,9 @@ export function TournamentsFormPage() {
         },
       });
     }
+    setRefetch();
     navigate("/tournaments");
+    onClose();
   });
 
   useEffect(() => {
@@ -116,21 +118,12 @@ export function TournamentsFormPage() {
           <Button color="primary" type="submit">
             Save
           </Button>
-          {params.id && (
-            <Button
-              color="danger"
-              onClick={async () => {
-                const accepted = window.confirm("Confirm");
-                if (accepted) {
-                  await deleteTournament(params.id);
-                  toast.success("Tournament deleted");
-                  navigate("/tournaments");
-                }
-              }}
-            >
-              Delete
-            </Button>
-          )}
+          <Button color="warning" onClick={() => {
+            onClose();
+            navigate("/tournaments");
+            }}>
+            Cancel
+          </Button>
         </div>
       </form>
     </div>
