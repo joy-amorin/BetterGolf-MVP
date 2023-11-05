@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import { getAllTournaments } from "../api/tournaments.api";
 import { TournamentCard } from "./TournamentCard";
 
-export function TournamentsList() {
+export function TournamentsList({ refetch }) {
   const [tournaments, setTournaments] = useState([]);
 
+  const fetchTournaments = async () => {
+    const response = await getAllTournaments();
+    setTournaments(response.data);
+  };
+
   useEffect(() => {
-    async function loadTournaments() {
-      const res = await getAllTournaments();
-      setTournaments(res.data);
-    }
-    loadTournaments();
-  }, []);
+    fetchTournaments();
+  }, [refetch]);
 
   return (
     <div className="grid grid-cols-3 gap-3">
