@@ -49,9 +49,9 @@ export function TournamentsFormPage({ onClose, setRefetch }) {
       });
     }
     setRefetch();
-    navigate("/tournaments");
     onClose();
   });
+  
 
   useEffect(() => {
     async function loadTournament() {
@@ -75,7 +75,7 @@ export function TournamentsFormPage({ onClose, setRefetch }) {
       ) : (
         <h1 className="text-3xl font-bold mb-3">Edit Tournament</h1>
       )}
-      <Divider className="my-3"/>
+      <Divider className="my-3" />
       <form onSubmit={onSubmit}>
         <div className="mb-3">
           <Input
@@ -115,12 +115,10 @@ export function TournamentsFormPage({ onClose, setRefetch }) {
           />
         </div>
         <div className="flex justify-between mb-2">
-          <Button color="primary" type="submit">
+          <Button color="primary" type="submit" onClick={onClose}>
             Save
           </Button>
-          <Button color="warning" onClick={() => {
-            onClose();
-            }}>
+          <Button color="warning" onClick={onClose}>
             Cancel
           </Button>
         </div>

@@ -33,10 +33,9 @@ export function TournamentPage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
   const params = useParams();
+
   const [size, setSize] = React.useState("md");
-  const [backdrop, setBackdrop] = React.useState("opaque"); // Agrega el estado backdrop
-  const sizes = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "full"];
-  const backdrops = ["opaque", "blur", "transparent"];
+  const [backdrop, setBackdrop] = React.useState("opaque");
 
   const handleOpen = (size) => {
     setSize(size);
@@ -45,6 +44,12 @@ export function TournamentPage() {
 
   const handleBackdropChange = (newBackdrop) => {
     setBackdrop(newBackdrop);
+  };
+
+  const [refetch, setRefetch] = React.useState(true);
+
+  const handleRefetch = () => {
+    setRefetch((prevRefetch) => !prevRefetch);
   };
 
   useEffect(() => {
@@ -68,7 +73,7 @@ export function TournamentPage() {
 
     fetchTournament();
     fetchNumOfPlayers();
-  }, [id]);
+  }, [id, refetch]);
 
   return (
     <>
@@ -107,7 +112,10 @@ export function TournamentPage() {
                         <>
                           <ModalHeader className="flex flex-col gap-1"></ModalHeader>
                           <ModalBody>
-                            <TournamentsFormPage onClose={onClose} />
+                            <TournamentsFormPage
+                              onClose={onClose}
+                              setRefetch={handleRefetch}
+                            />
                           </ModalBody>
                         </>
                       )}
@@ -117,14 +125,17 @@ export function TournamentPage() {
                 <Button
                   color="danger"
                   onClick={async () => {
-                    const accepted = window.confirm("Are you sure you want to delete this tournament?");
+                    const accepted = window.confirm(
+                      "Are you sure you want to delete this tournament?"
+                    );
                     if (accepted) {
                       await deleteTournament(id);
-                      toast.success("Tournament deleted"), navigate("/tournaments");
+                      toast.success("Tournament deleted");
+                      navigate("/tournaments");
                     }
                   }}
                 >
-                  Delete torunament
+                  Delete tournament
                 </Button>
               </CardFooter>
             </Card>
@@ -134,8 +145,9 @@ export function TournamentPage() {
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
                     ? `No players on ${tournament.name}`
-                    : `${numOfPlayers} Player${numOfPlayers === 1 ? "" : "s"
-                    } on ${tournament.name}`}
+                    : `${numOfPlayers} Player${
+                        numOfPlayers === 1 ? "" : "s"
+                      } on ${tournament.name}`}
                 </h1>
               </CardHeader>
               <Divider />
