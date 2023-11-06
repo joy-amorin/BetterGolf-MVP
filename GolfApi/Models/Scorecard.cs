@@ -10,8 +10,14 @@ public class Scorecard
     public int Id { get; set; }
     public int PlayingHandicap { get; set; }
     public List<ScorecardResult> ScorecardResults { get; set; } = new List<ScorecardResult>();
+    public Player Player { get; set; }
+
     public Scorecard()
     {
+    }
+    public Scorecard(Player player)
+    {
+        Player = player;
     }
     public override string ToString() 
     {

@@ -136,4 +136,30 @@ public class Course
         await db.SaveChangesAsync();
         return Results.NoContent();
     }
+    public static Course GetDefaultCourse()
+    {
+        Course defaultCourse = new Course
+        {
+            Name = "Default Course",
+            CourseSlope = 113,
+            CourseRating = 72.0,
+            Par = 72,
+            Holes = GenerateDefaultHoles(18)
+        };
+
+        return defaultCourse;
+    }
+    private static List<Hole> GenerateDefaultHoles(int numberOfHoles)
+    {
+        List<Hole> holes = new List<Hole>();
+        for (int i = 1; i <= numberOfHoles; i++)
+        {
+            holes.Add(new Hole
+            {
+                Par = 4,
+                Number = i
+            });
+        }
+        return holes;
+    }
 }

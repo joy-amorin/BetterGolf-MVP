@@ -15,7 +15,7 @@ public class Player
     public string LastName { get; set; } = null!;
     public double HandicapIndex { get; set; }
     public DateOnly Birthdate { get; set; }
-    public bool IsPreferredCategoryLadies { get; set; } // para ser inclusivos
+    public bool IsPreferredCategoryLadies { get; set; }
     public List<Tournament> Tournaments { get; set; } = new List<Tournament>();
     public List<Category> Categories { get; set; } = new List<Category>();
     public List<Scorecard> Scorecards { get; set; } = new List<Scorecard>();
@@ -152,24 +152,44 @@ public class Player
             }
         }
     }
-    public void AssignScorecard(Category category)
+    public void AssignScorecard(Category category, Course defaultCourse)
     {
         string preferredCategory = IsPreferredCategoryLadies ? "ladies" : "open";
         if (!(category.Sex == preferredCategory || category.Sex == "mixed"))
             return;
-        if (category.OpenCourse == null || category.LadiesCourse == null)
-                return;
-        Course SelectedCourse = IsPreferredCategoryLadies ? category.LadiesCourse : category.OpenCourse;
-        Scorecard PlayerScorecard = new()
+
+        // Selecciona el curso preferido o el curso mixto si el preferido no está disponible
+        // Si ambos son nulos, utiliza un curso predeterminado
+        Course selectedCourse = IsPreferredCategoryLadies
+            ? category.LadiesCourse ?? category.OpenCourse ?? defaultCourse
+            : category.OpenCourse ?? defaultCourse;
+
+        // Asegúrate de que hay un curso seleccionado antes de proceder
+        if (selectedCourse == null)
+            throw new InvalidOperationException("No se puede asignar una scorecard sin un curso definido");
+
+        // Crear la Scorecard con los datos del curso seleccionado
+        Scorecard playerScorecard = new Scorecard
         {
-            PlayingHandicap = GolfMath.CalculateCourseHandicap(this, SelectedCourse),
+            PlayingHandicap = GolfMath.CalculateCourseHandicap(this, selectedCourse),
+            Player = this,
             ScorecardResults = new List<ScorecardResult>()
         };
-        foreach (Hole hole in SelectedCourse.Holes)
+
+        // Agregar resultados para cada hoyo en el curso seleccionado
+        foreach (Hole hole in selectedCourse.Holes)
         {
-            PlayerScorecard.ScorecardResults.Add(new ScorecardResult() { Hole = hole});
+            playerScorecard.ScorecardResults.Add(new ScorecardResult { Hole = hole });
         }
-        category.Tournament?.Scorecards.Add(PlayerScorecard);
-        return;
+
+        // Si la categoría tiene un torneo asociado, agregar la scorecard al torneo
+        if (category.Tournament != null)
+        {
+            category.Tournament.Scorecards.Add(playerScorecard);
+        }
+
+        // Agregar la scorecard al jugador
+        Scorecards.Add(playerScorecard);
     }
+
 }

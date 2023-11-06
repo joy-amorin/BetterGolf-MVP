@@ -6,6 +6,8 @@ using GolfApi.Models.DTOs.CategoryDTOs;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
+using GolfApi.Models.Engine;
+using System.Diagnostics.Eventing.Reader;
 
 namespace GolfApi.Models;
 
@@ -195,10 +197,11 @@ public class Tournament
             tournament.Players.Add(player);
             tournament.Count = tournament.Players.Count;
             player.AssignCategory(tournament);
+            Course defaultCourse = Course.GetDefaultCourse();
             await db.SaveChangesAsync();
             foreach (Category category in tournament.Categories)
             {
-                player.AssignScorecard(category);
+                player.AssignScorecard(category, defaultCourse);
             }
             await db.SaveChangesAsync();
             return Results.Ok(new SinglePLayerDTO(player));
@@ -233,24 +236,61 @@ public class Tournament
         await db.SaveChangesAsync();
         return Results.NoContent();
     }
-    public static async Task<IResult> TournamentResults(int Id, BgContext db)
+    public static async Task<IResult> TournamentResults(int Id, bool DiscountHandicap, BgContext db)
     {
-        var tournament = await db.Tournaments.Include(x => x.Players).Include(x => x.Categories).FirstOrDefaultAsync(x => x.Id == Id);
+        var tournament = await db.Tournaments
+            .Include(x => x.TournamentType)
+            .Include(x => x.Scorecards)
+                .ThenInclude(y => y.ScorecardResults)       
+            .Include(x=> x.Scorecards)
+                .ThenInclude(x => x.Player)
+            .Include(x=> x.Scorecards)
+                .ThenInclude(x=>x.PlayingHandicap)
+            .Include(x => x.Categories)
+            .FirstOrDefaultAsync(x => x.Id == Id);
         if (tournament == null) { return Results.NotFound(); };
 
-        if (tournament.TournamentType == "medal" || tournament.TournamentType == "Medal")
-            return Results.Ok(MedalResults());
-        if (tournament.TournamentType == "stableford" || tournament.TournamentType == "Stableford")
-            return Results.Ok(StablefordResults());
 
-        return Results.NotFound();
-    }
-    static internal List<Result> MedalResults()
-    {
-        return new List<Result>();
-    }
-    static internal List<Result> StablefordResults()
-    {
-        return new List<Result>();
+        List<Result> results = new();
+        int placement = 1;
+        if (tournament.TournamentType.ToLower() == "medal")
+        {
+            if (DiscountHandicap)
+            {
+                foreach (Scorecard scorecard in tournament.Scorecards)
+                {
+                    results.Add(new Result(scorecard.Player, ResultsEngine.MedalNetScore(scorecard.ScorecardResults)));
+                }
+            }
+            else
+            {
+                foreach (Scorecard scorecard in tournament.Scorecards)
+                {
+                    results.Add(new Result(scorecard.Player, ResultsEngine.MedalScratchScore(scorecard.PlayingHandicap, scorecard.ScorecardResults)));
+                }
+            }   
+        }
+        if (tournament.TournamentType.ToLower() == "stableford")
+        {
+            if (DiscountHandicap)
+            {
+                foreach (Scorecard scorecard in tournament.Scorecards)
+                {
+                    results.Add(new Result(scorecard.Player, ResultsEngine.StablefordScore(scorecard.ScorecardResults)));
+                }
+            }
+            else
+            {
+                foreach (Scorecard scorecard in tournament.Scorecards)
+                {
+                    results.Add(new Result(scorecard.Player, ResultsEngine.StablefordScore(scorecard.AdjustScorecardResultsByHandicap())));
+                }
+            }
+        }
+        foreach (Result result in results.OrderBy(x => x.Score))
+        {
+            result.Placement = placement++;
+        }
+        return Results.Ok(results.ToArray());
     }
 }

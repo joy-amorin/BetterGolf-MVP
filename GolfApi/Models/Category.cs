@@ -138,6 +138,8 @@ public class Category
         {
             category.Players.Add(player);
             category.Count = category.Players.Count;
+            Course defaultCourse = Course.GetDefaultCourse();
+            player.AssignScorecard(category, defaultCourse); // funcion que crea una scorecard para el player en la categoria
             await db.SaveChangesAsync();
             return Results.Ok(new PlayerListGetDTO(player));
         }
@@ -161,7 +163,6 @@ public class Category
         }
         return Results.Text("El jugador no se encontro en la categoria");
     }
-    // Function that delete player of a cetegory
     public static async Task<IResult> SetOpenCourse(int Id, int CourseId, BgContext db)
     {
         var category = await db.Categories.FindAsync(Id);
@@ -189,13 +190,14 @@ public class Category
 
     public static Category GetDefaultCategory(Tournament tournament) // se usa despues en tournament para retorna una cat vacia
     {
+        Course defaultCourse = Course.GetDefaultCourse(); // obtener el curso por defecto utilizando el metodo definido en Course
         return
             new Category()
             {
                 Name = "Mixed General Category Hcap cutoff @56",
                 Sex = "mixed",
-                OpenCourse = null, //defaultcourse, no hay default open course por ahora, todo
-                LadiesCourse = null, //defaultladiescourse, no hay default obviamente tampoco
+                OpenCourse = defaultCourse,
+                LadiesCourse = defaultCourse,
                 Tournament = tournament,
                 MinAge = 0,
                 MaxAge = 130,
