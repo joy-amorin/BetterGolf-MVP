@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using GolfApi.Models.DTOs.TournamentDTOs;
 using GolfApi.Models.DTOs.PlayerDTOs;
 using GolfApi.Models.DTOs.CategoryDTOs;
+using GolfApi.Models.DTOs.ScorecardDTOs;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -181,7 +182,9 @@ public class Tournament
         var tournament = await db.Tournaments.Include(x => x.Scorecards).FirstOrDefaultAsync(x => x.Id == Id);
         if (tournament == null) { return Results.NotFound(); }
 
-        return Results.Ok(tournament.Scorecards);
+        var scorecardDtos = tournament.Scorecards.Select(sc => new ScorecardListGetDTO(sc)).ToList();
+
+        return Results.Ok(scorecardDtos);
     }
     //funcion que agrega un jugador a un torneo si el jugador no esta ya registrado
         public static async Task<IResult> AddTournamentPlayer(int tournamentId, int playerId, BgContext db)

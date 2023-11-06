@@ -11,6 +11,7 @@ public class Scorecard
     public int PlayingHandicap { get; set; }
     public List<ScorecardResult> ScorecardResults { get; set; } = new List<ScorecardResult>();
     public Player Player { get; set; }
+    public int PlayerId { get; set; }
 
     public Scorecard()
     {
