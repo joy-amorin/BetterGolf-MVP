@@ -136,9 +136,15 @@ public class Course
         await db.SaveChangesAsync();
         return Results.NoContent();
     }
-    public static Course GetDefaultCourse()
+    public static Course GetDefaultCourse(BgContext db)
     {
-        Course defaultCourse = new Course
+        var existingCourse = db.Courses.Include(c => c.Holes).FirstOrDefault(c => c.Name == "Default Course");
+        if (existingCourse != null)
+        {
+            return existingCourse;
+        }
+
+        var defaultCourse = new Course
         {
             Name = "Default Course",
             CourseSlope = 113,
@@ -146,6 +152,9 @@ public class Course
             Par = 72,
             Holes = GenerateDefaultHoles(18)
         };
+
+        db.Courses.Add(defaultCourse);
+        db.SaveChanges();
 
         return defaultCourse;
     }

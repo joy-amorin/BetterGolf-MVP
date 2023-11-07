@@ -12,6 +12,7 @@ public class Scorecard
     public List<ScorecardResult> ScorecardResults { get; set; } = new List<ScorecardResult>();
     public Player Player { get; set; }
     public int PlayerId { get; set; }
+   
 
     public Scorecard()
     {
@@ -34,12 +35,6 @@ public class Scorecard
     {
         return Id.GetHashCode();
     }
-    /*
-    public static async Task<IResult> GetAllScorecards(BgContext db)
-    {
-        return Results.Ok(await db.Scorecards.Select(x => new ScorecardListGetDTO(x)).ToArrayAsync());
-    }
-    */
     public static async Task<IResult> GetScorecard(int id, BgContext db)
     {
         var scorecard = await db.Scorecards.FindAsync(id);
