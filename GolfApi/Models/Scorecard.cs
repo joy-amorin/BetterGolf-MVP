@@ -12,7 +12,9 @@ public class Scorecard
     public List<ScorecardResult> ScorecardResults { get; set; } = new List<ScorecardResult>();
     public Player Player { get; set; }
     public int PlayerId { get; set; }
-   
+    public Tournament Tournament { get; set; }
+    public int? TournamentId { get; set; }
+
 
     public Scorecard()
     {

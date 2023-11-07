@@ -25,6 +25,7 @@ public class Tournament
     public ICollection<Player> Players { get; set; } = new List<Player>();
     public ICollection<Category> Categories { get; set; } = new List<Category>();
     public ICollection<Scorecard> Scorecards { get; set; } = new List<Scorecard>();
+    //public ICollection<Result> Results { get; set; } = new List<Result>();
 
     public Tournament(TournamentPostDTO tournamentPostDTO)
     {
@@ -187,7 +188,7 @@ public class Tournament
         return Results.Ok(scorecardDtos);
     }
     //funcion que agrega un jugador a un torneo si el jugador no esta ya registrado
-    public static async Task<IResult> AddTournamentPlayer(int tournamentId, int playerId, BgContext db)
+        public static async Task<IResult> AddTournamentPlayer(int tournamentId, int playerId, BgContext db)
     {
         var tournament = await db.Tournaments.Include(x => x.Players).Include(x => x.Categories).FirstOrDefaultAsync(x => x.Id == tournamentId);
         if (tournament == null) return Results.NotFound();
@@ -202,15 +203,16 @@ public class Tournament
             player.AssignCategory(tournament);
             Course defaultCourse = Course.GetDefaultCourse(db);
             await db.SaveChangesAsync();
-            foreach (Category category in tournament.Categories)
+             foreach (Category category in tournament.Categories)
             {
-                player.AssignScorecard(category, defaultCourse);
+                player.AssignScorecard(category, defaultCourse, db);
             }
             await db.SaveChangesAsync();
             return Results.Ok(new SinglePLayerDTO(player));
         }
         return Results.NoContent();
     }
+
 
     //funcion que elimine un jugador de un torneo
     public static async Task<IResult> DeleteTournamentPlayer(int tournamentId, int playerId, BgContext db)
@@ -228,7 +230,35 @@ public class Tournament
         }
         return Results.NoContent();
     }
-    public async Task<IResult> AssignCategoriesReset(int Id, BgContext db)
+    public static async Task<IResult> CalculateResult(BgContext db, Tournament tournament)
+    {
+        foreach (var scorecard in tournament.Scorecards)
+        {
+            var holeScores = await Scorecard.SResultInScorecard(scorecard.Id, db);
+
+            if (holeScores is OkObjectResult okResult && okResult.Value is List<ScorecardResult> scorecardResults)
+            {
+                var grossScore = scorecard.CalculateGrossScore();
+                var netScore = scorecard.CalculateNetscore();
+
+                var result = new Result
+                {
+                    TournamentId = scorecard.TournamentId,
+                    PlayerId = scorecard.PlayerId,
+                    GrossScore = grossScore,
+                    NetScore = netScore
+                };
+
+                db.Results.Add(result);
+            }
+        }
+        await db.SaveChangesAsync();
+    }
+
+   
+
+
+   /* public async Task<IResult> AssignCategoriesReset(int Id, BgContext db)
     {
         var tournament = await db.Tournaments.Include(x =>  x.Categories).Include(x => x.Players).FirstOrDefaultAsync(x => x.Id == Id);
         if (tournament == null) { return Results.NotFound(); };
@@ -240,7 +270,7 @@ public class Tournament
         await db.SaveChangesAsync();
         return Results.NoContent();
     }
-    public static async Task<IResult> TournamentResults(int Id, bool DiscountHandicap, BgContext db)
+     public static async Task<IResult> TournamentResults(int Id, bool DiscountHandicap, BgContext db)
     {
         var tournament = await db.Tournaments
             .Include(x => x.TournamentType)
@@ -296,5 +326,5 @@ public class Tournament
             result.Placement = placement++;
         }
         return Results.Ok(results.ToArray());
-    }
+    } */
 }

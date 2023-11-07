@@ -8,11 +8,12 @@ public class Result
 {
     public int Id { get; set; }
     public Player Player { get; set; }
+    public int NetScore { get; set; }
     public int Placement { get; set; }
-    public Result(Player player, int placement)
+    public Result(Player player, int NetScore)
     {
         Player = player;
-        Placement = placement;
+        this.NetScore = NetScore;
     }
     public Result() 
     {
@@ -46,13 +47,6 @@ public class Result
 
         return Results.Ok(result);
     }
-    public static async Task<IResult> CreateResult(BgContext db, Result result)
-    {
-        db.Results.Add(result);
-        await db.SaveChangesAsync();
-
-        return Results.Created($"/Results/{result.Id}", result);
-    }
     public static async Task<IResult> UpdateResult(int id, BgContext db, Result InputResult)
     {
         var result = await db.Results.FindAsync(id);
@@ -75,13 +69,5 @@ public class Result
         db.Results.Remove(result);
         await db.SaveChangesAsync();
         return Results.NoContent();
-    }
-    public int CalculateScore(int playingHandicap, List<ScorecardResult> scorecardResults)
-    {
-        return ResultsEngine.Score(playingHandicap, scorecardResults);
-    }
-    public int CalculateStableford(List<ScorecardResult> scorecardResults)
-    {
-        return ResultsEngine.Stableford(scorecardResults);
     }
 }
