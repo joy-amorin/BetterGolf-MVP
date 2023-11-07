@@ -1,8 +1,8 @@
-using GolfApi.Data;
-using GolfApi.Models.DTOs.ScorecardResultDTOs;
+using Api.Data;
+using Api.Models.DTOs.ScorecardResultDTOs;
 using Microsoft.EntityFrameworkCore;
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class ScorecardResult
 {

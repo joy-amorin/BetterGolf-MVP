@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using GolfApi.Data;
+using Api.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GolfApi.Models
+namespace Api.Models
 {
     public class Default
     {

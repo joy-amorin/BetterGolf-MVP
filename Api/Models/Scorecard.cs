@@ -1,9 +1,9 @@
-﻿using GolfApi.Data;
+﻿using Api.Data;
 using Microsoft.EntityFrameworkCore;
-using GolfApi.Models.DTOs.ScorecardDTOs;
+using Api.Models.DTOs.ScorecardDTOs;
 using System.Reflection.Metadata.Ecma335;
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class Scorecard
 {

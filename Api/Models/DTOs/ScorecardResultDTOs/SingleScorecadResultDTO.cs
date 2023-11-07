@@ -1,4 +1,4 @@
-namespace GolfApi.Models.DTOs.ScorecardResultDTOs;
+namespace Api.Models.DTOs.ScorecardResultDTOs;
 
 public class SingleScorecardResultDTO
 {

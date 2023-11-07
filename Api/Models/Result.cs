@@ -1,8 +1,8 @@
-﻿using GolfApi.Data;
+﻿using Api.Data;
 using Microsoft.EntityFrameworkCore;
-using GolfApi.Models.Engine;
+using Api.Models.Engine;
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class Result
 {
