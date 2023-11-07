@@ -1,8 +1,8 @@
-﻿using GolfApi.Data;
-using GolfApi.Models.DTOs.HoleDTOs;
+﻿using Api.Data;
+using Api.Models.DTOs.HoleDTOs;
 using Microsoft.EntityFrameworkCore;
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class Hole
 {

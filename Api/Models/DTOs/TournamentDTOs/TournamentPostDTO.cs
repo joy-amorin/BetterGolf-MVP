@@ -1,4 +1,4 @@
-namespace GolfApi.Models.DTOs.TournamentDTOs;
+namespace Api.Models.DTOs.TournamentDTOs;
 
 public class TournamentPostDTO
 {

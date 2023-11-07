@@ -1,4 +1,4 @@
-namespace GolfApi.Models.DTOs.CategoryDTOs;
+namespace Api.Models.DTOs.CategoryDTOs;
 
 public class SingleCategoryDTO
 {

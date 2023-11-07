@@ -1,13 +1,13 @@
-﻿using GolfApi.Data;
+﻿using Api.Data;
 using Microsoft.EntityFrameworkCore;
-using GolfApi.Models.DTOs.TournamentDTOs;
-using GolfApi.Models.DTOs.PlayerDTOs;
-using GolfApi.Models.DTOs.CategoryDTOs;
+using Api.Models.DTOs.TournamentDTOs;
+using Api.Models.DTOs.PlayerDTOs;
+using Api.Models.DTOs.CategoryDTOs;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class Tournament
 {
