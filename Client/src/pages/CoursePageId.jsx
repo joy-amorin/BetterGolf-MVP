@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  getTournamentById,
-  getAllPlayersInTournament,
-  deleteTournament,
-} from "../api/tournaments.api";
-import { PlayersListForTournament } from "../components/PlayersListForTournament";
+  getCourseById,
+
+  deleteCourse,
+  getHolesInCourses,
+} from "../api/Courses.api";
+
 import {
   Card,
   CardHeader,
@@ -23,12 +24,13 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-import { TournamentsFormPage } from "./TournamentsFormPage";
+import { CoursesFormPage } from "./CoursesFormPage";
 import { toast } from "react-hot-toast";
-import { TournamentandPLayer } from "./TournamentandPLayer";
+/* import { CourseandPLayer } from "./CourseandPLayer"; */
+import { CoursesAndHole } from "./CoursesAndHoles";
 
-export function TournamentPage() {
-  const [tournament, setTournament] = useState(null);
+export function CoursePageId() {
+  const [course, setCourse] = useState(null);
   const [numOfPlayers, setNumOfPlayers] = useState(null);
   const { id } = useParams();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -54,48 +56,47 @@ export function TournamentPage() {
   };
 
   useEffect(() => {
-    async function fetchTournament() {
+    async function fetchCourse() {
       try {
-        const response = await getTournamentById(id);
-        setTournament(response.data);
+        const response = await getCourseById(id);
+        setCourse(response.data);
       } catch (error) {
-        console.error("Error fetching tournament:", error);
+        console.error("Error fetching Course:", error);
       }
     }
 
     async function fetchNumOfPlayers() {
       try {
-        const response = await getAllPlayersInTournament(id);
+        const response = await getHolesInCourses(id);
         setNumOfPlayers(response.data.length);
       } catch (error) {
         console.error("Error fetching number of players:", error);
       }
     }
 
-    fetchTournament();
+    fetchCourse();
     fetchNumOfPlayers();
   }, [id, refetch]);
 
   return (
     <>
       <div>
-        {tournament ? (
+        {course ? (
           <div>
             <Card>
               <CardHeader>
-                <h1 className="text-3xl font-bold">{tournament.name}</h1>
+                <h1 className="text-3xl font-bold">{course.name}</h1>
               </CardHeader>
               <Divider />
               <CardBody>
                 <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
-                  {new Date(tournament.startDate).toLocaleDateString()} -{" "}
-                  {new Date(tournament.endDate).toLocaleDateString()}
+                 Slope :  { course.courseSlope}
                 </p>
                 <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
-                  {tournament.tournamentType}
+                 Rating :  {course.courseRating}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300">
-                  {tournament.description}
+                 Par :  {course.par}
                 </p>
               </CardBody>
               <CardFooter className="flex justify-between">
@@ -113,7 +114,7 @@ export function TournamentPage() {
                         <>
                           <ModalHeader className="flex flex-col gap-1"></ModalHeader>
                           <ModalBody>
-                            <TournamentsFormPage
+                            <CoursesFormPage
                               onClose={onClose}
                               setRefetch={handleRefetch}
                             />
@@ -127,16 +128,16 @@ export function TournamentPage() {
                   color="danger"
                   onClick={async () => {
                     const accepted = window.confirm(
-                      "Are you sure you want to delete this tournament?"
+                      "Are you sure you want to delete this Course?"
                     );
                     if (accepted) {
-                      await deleteTournament(id);
-                      toast.success("Tournament deleted");
-                      navigate("/tournaments");
+                      await deleteCourse(id);
+                      toast.success("Course deleted");
+                      navigate("/Courses");
                     }
                   }}
                 >
-                  Delete tournament
+                  Delete Course
                 </Button>
               </CardFooter>
             </Card>
@@ -145,22 +146,23 @@ export function TournamentPage() {
               <CardHeader>
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
-                    ? `No players on ${tournament.name}`
+                    ? `No players on ${Course.name}`
                     : `${numOfPlayers} Player${
                         numOfPlayers === 1 ? "" : "s"
-                      } on ${tournament.name}`}
+                      } on ${course.name}`}
                 </h1>
               </CardHeader>
               <Divider />
               <CardBody>
-               {/*  <PlayersListForTournament tournamentId={id} /> */}
-               <TournamentandPLayer />
+               {/*  <PlayersListForCourse CourseId={id} /> */}
+               <CoursesAndHole />
+      
               </CardBody>
               <CardFooter>
                 {params.id && (
                   <Button
                     onClick={() => {
-                      navigate(`/tournaments/${params.id}/addplayers`);
+                      navigate(`/Courses/${params.id}/holes`);
                     }}
                   >
                     Add player
@@ -170,7 +172,7 @@ export function TournamentPage() {
             </Card>
           </div>
         ) : (
-          <p>Loading tournament information...</p>
+          <p>Loading Course information...</p>
         )}
       </div>
     </>

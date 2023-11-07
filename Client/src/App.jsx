@@ -13,10 +13,11 @@ import { CoursesFormPage } from "./pages/CoursesFormPage";
 import { CategoriesFormPage } from "./pages/CategoriesFormPage";
 import { TournamentandPLayer } from "./pages/TournamentandPLayer";
 import { PlayersListForTournament } from "./components/PlayersListForTournament";
-import { CoursesAndHole } from "./pages/HolesInCourses";
-import { TournamentPage } from "./pages/TournamentPage.JSX";
+import { CoursesAndHole } from "./pages/CoursesAndHoles";
+import { TournamentPage } from "./pages/TournamentPage";
 import { PlayerPage } from "./pages/PlayerPage";
 import { Divider } from "@nextui-org/react";
+import { CoursePageId } from "./pages/CoursePageId";
 
 
 function App() {
@@ -51,7 +52,7 @@ function App() {
             <Route path="/players-create" element={<PlayersFormPage />} />
             <Route path="/players/:id" element={<PlayerPage />} />
             <Route path="/courses" element={<CoursesPage />} />
-            <Route path="/courses/:id" element={<CoursesFormPage />} />
+            <Route path="/courses/:id" element={<CoursePageId />} />
             <Route path="/courses/:id/holes" element={<CoursesAndHole />} />
             <Route path="/courses-create" element={<CoursesFormPage />} />
             <Route path="/categories/:id" element={<CategoriesFormPage />} />  

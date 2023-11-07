@@ -1,25 +1,27 @@
 import { getHolesInCourses, deleteHolesInCourses } from '../api/courses.api';
 import { DeleteIcon } from "../assets/DeleteIcon";
-import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn } from "@nextui-org/react";
+import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn, Button} from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 export function CoursesAndHole() {
   const [holes, setholes] = useState([]);
   const [refetch, setRefetch] = useState(true);
   const params = useParams(); // para obtener el id de la url 
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (refetch) {
-      async function fetchholes() {
+    async function fetchHoles() {
       if (params.id) {
       const res = await getHolesInCourses(params.id);
       setholes(res.data);
       setRefetch(false);
-      }
-      fetchholes();
+      console.log(res.data);
+    }
+    if (refetch) { 
+      fetchHoles();
     }
   }}, [refetch]);
 
@@ -64,6 +66,14 @@ export function CoursesAndHole() {
         </TableBody>
       </Table>
     </div>
+    <Button
+                    onClick={() => {
+                      navigate(`/Courses/${params.id}/`);
+                    }}
+                  >
+                    Back
+                  </Button>
   </div>
+  
   );
 }
