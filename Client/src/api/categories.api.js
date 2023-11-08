@@ -11,3 +11,4 @@ export const createCategory = (categoryInfo) => categoriesApi.post('/', category
 export const updateCategory = (id, categoryInfo) => categoriesApi.put(`/${id}`, categoryInfo);
 
 export const deleteCategory = (id) => categoriesApi.delete(`/${id}`);
+export const getAllCategory = () => categoriesApi.get('/');

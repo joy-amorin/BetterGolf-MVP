@@ -146,7 +146,7 @@ export function CoursePageId() {
               <CardHeader>
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
-                    ? `No players on ${Course.name}`
+                    ? `No players on ${course.name}`
                     : `${numOfPlayers} Player${
                         numOfPlayers === 1 ? "" : "s"
                       } on ${course.name}`}
@@ -165,7 +165,7 @@ export function CoursePageId() {
                       navigate(`/Courses/${params.id}/holes`);
                     }}
                   >
-                    Add player
+                    Add Holes
                   </Button>
                 )}
               </CardFooter>

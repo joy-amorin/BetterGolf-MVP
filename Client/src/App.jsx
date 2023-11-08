@@ -18,6 +18,7 @@ import { TournamentPage } from "./pages/TournamentPage";
 import { PlayerPage } from "./pages/PlayerPage";
 import { Divider } from "@nextui-org/react";
 import { CoursePageId } from "./pages/CoursePageId";
+import { Categorias } from "./pages/Categorias";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
             <Route path="/tournaments/:id" element={<TournamentPage />} />
             <Route path="/tournaments/:id/edit" element={<TournamentsFormPage />} />
             <Route path="/tournaments/:id/players" element={<TournamentandPLayer />} />  
+            <Route path="/tournaments/:id/categories" element={ <Categorias />} />  
             <Route path="/tournaments/:id/addplayers" element={<PlayersListForTournament />} />  
             <Route path="/players" element={<PlayersPage />} />
             <Route path="/players-create" element={<PlayersFormPage />} />
@@ -56,6 +58,7 @@ function App() {
             <Route path="/courses/:id/holes" element={<CoursesAndHole />} />
             <Route path="/courses-create" element={<CoursesFormPage />} />
             <Route path="/categories/:id" element={<CategoriesFormPage />} />  
+            <Route path="/categories/" element={<Categorias />} />  
           </Routes>
         </div>
       </div>
