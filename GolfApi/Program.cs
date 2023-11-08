@@ -76,9 +76,9 @@ internal class Program
         app.MapPost("/api/Categories/{id}/Players", Category.AddCategoryPlayer);
         app.MapGet("/api/Categories/{id}/Players", Category.GetCategoryPlayers);
         app.MapDelete("/api/Categories/{id}/Players/{playerid}", Category.DeleteCategoryPlayer);
-        app.MapGet("/api/Categories/SeparateLadies/{id}", Category.UpdateSeperateLadies);
-        app.MapPost("/api/Categories/SeparateAge/{id}", Category.UpdateSeparateAgeCategories);
-        app.MapPost("/api/Categories/SeparateHandicap/{id}", Category.UpdateSeparateHcapCategories);
+        //app.MapGet("/api/Categories/SeparateLadies/{id}", Category.UpdateSeperateLadies);
+        //app.MapPost("/api/Categories/SeparateAge/{id}", Category.UpdateSeparateAgeCategories);
+        //app.MapPost("/api/Categories/SeparateHandicap/{id}", Category.UpdateSeparateHcapCategories);
         app.MapPost("/api/Categories/{id}/SetOpenCourse", Category.SetOpenCourse);
         app.MapPost("/api/Categories/{id}/SetLadiesCourse", Category.SetLadiesCourse);
 
@@ -94,10 +94,10 @@ internal class Program
 
         // Seccion Holes
         //app.MapGet("/api/Holes", Hole.GetAllHoles);
-        app.MapGet("/api/Holes/{id}", Hole.GetHole);
+        //app.MapGet("/api/Holes/{id}", Hole.GetHole);
         //app.MapPost("/api/Holes", Hole.CreateHole);
         app.MapPut("/api/Holes/{id}", Hole.UpdateHole);
-        app.MapDelete("/api/Holes/{id}", Hole.DeleteHole);
+        //app.MapDelete("/api/Holes/{id}", Hole.DeleteHole);
 
         // Seccion Scorecard
         //app.MapGet("/api/Scorecards", Scorecard.GetAllScorecards);
