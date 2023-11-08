@@ -139,6 +139,7 @@ public class Category
             category.Players.Add(player);
             category.Count = category.Players.Count;
             Course defaultCourse = Course.GetDefaultCourse(db);
+            //player.AssignScorecard(category, defaultCourse, db);
             await db.SaveChangesAsync();
             return Results.Ok(new PlayerListGetDTO(player));
         }
@@ -204,6 +205,7 @@ public class Category
                 MaxHcap = 56,
             };
     }
+    /*
     public static async Task<IResult> UpdateSeperateLadies(int Id, BgContext db)
     {
         var category = await db.Categories.Include(x => x.ChildrenCategories).Include(x => x.Tournament).FirstOrDefaultAsync(x => x.Id == Id);
@@ -269,7 +271,7 @@ public class Category
         }
         if ((array.Min() < 1) || array.Max() > 129)
         {
-            return Results.BadRequest("Categorias de edad mal dise�adas");
+            return Results.BadRequest("Categorias de edad mal diseñadas");
         }
         if (array.Length < 2)
             return Results.BadRequest("Las categorias no se arman impllicitamente. Se necesitan almenos 2 elementos para armarlas");
@@ -345,7 +347,7 @@ public class Category
         Array.Sort(array);
         var categoryArray = new Category[array.Length + 1];
         int i = 0;
-        foreach (double element in array) // esto se tiene que cambiar obviamente, pero despues jeje
+        foreach (double element in array)
         {
             if (i == 0)
             {
@@ -410,5 +412,5 @@ public class Category
         await db.SaveChangesAsync();
         list.Add(new SingleCategoryDTO(lastCategory));
         return Results.Ok(list.ToArray());
-    }
+    }*/
 }

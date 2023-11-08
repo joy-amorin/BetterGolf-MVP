@@ -152,12 +152,11 @@ public class Player
             }
         }
     }
-    public void AssignScorecard(Category category, Course defaultCourse)
+    public void AssignScorecard(Category category, Course defaultCourse, BgContext db)
     {
         string preferredCategory = IsPreferredCategoryLadies ? "ladies" : "open";
         if (!(category.Sex == preferredCategory || category.Sex == "mixed"))
             return;
-
         // Selecciona el curso preferido o el curso mixto si el preferido no está disponible
         // Si ambos son nulos, utiliza un curso predeterminado
         Course selectedCourse = IsPreferredCategoryLadies
@@ -175,20 +174,14 @@ public class Player
             Player = this,
             ScorecardResults = new List<ScorecardResult>()
         };
-
-        // Agregar resultados para cada hoyo en el curso seleccionado
         foreach (Hole hole in selectedCourse.Holes)
         {
             playerScorecard.ScorecardResults.Add(new ScorecardResult { Hole = hole });
         }
-
-        // Si la categoría tiene un torneo asociado, agregar la scorecard al torneo
         if (category.Tournament != null)
         {
             category.Tournament.Scorecards.Add(playerScorecard);
         }
-
-        // Agregar la scorecard al jugador
         Scorecards.Add(playerScorecard);
     }
 

@@ -3,13 +3,18 @@ namespace GolfApi.Models.Engine
 {
     public static class ResultsEngine
     {
-        public static int Score( int playingHandicap, List<ScorecardResult> scorecardResults)
+        public static int MedalNetScore(List<ScorecardResult> scorecardResults)
+        {
+            int totalStrokes = scorecardResults.Sum(x => x.Strokes);
+            return totalStrokes;
+        }
+        public static int MedalScratchScore(int playingHandicap, List<ScorecardResult> scorecardResults)
         {
             int totalStrokes = scorecardResults.Sum(x => x.Strokes);
             return (totalStrokes - playingHandicap) >= 0 ? totalStrokes - playingHandicap : 0;
         }
 
-        public static int Stableford (List<ScorecardResult> scorecardResults)
+        public static int StablefordScore (List<ScorecardResult> scorecardResults)
         {
             int Points = 0;
             foreach (var result in scorecardResults)
@@ -26,4 +31,3 @@ namespace GolfApi.Models.Engine
         }
     }
 }
-

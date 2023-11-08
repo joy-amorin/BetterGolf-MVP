@@ -1,6 +1,8 @@
 using GolfApi.Data;
 using GolfApi.Models.DTOs.ScorecardResultDTOs;
 using Microsoft.EntityFrameworkCore;
+using GolfApi.Models;
+
 
 namespace GolfApi.Models;
 
@@ -49,7 +51,7 @@ public class ScorecardResult
         return Results.Ok(new SingleScorecardResultDTO(scorecardresult));
     }
 
-       public static async Task<IResult> UpdateScorecardResult(int id, BgContext db, ScorecardResultPostDTO InputScorecardResult)
+    public static async Task<IResult> UpdateScorecardResult(int id, BgContext db, ScorecardResultPostDTO InputScorecardResult)
     {
         var scorecardresult = await db.ScorecardResults.Include(x => x.Hole).FirstOrDefaultAsync(x => x.Id == id);
         if (scorecardresult == null)

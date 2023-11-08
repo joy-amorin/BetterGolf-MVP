@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
 using GolfApi.Models.Engine;
 using System.Diagnostics.Eventing.Reader;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Collections.Generic;
+
 
 namespace GolfApi.Models;
 
@@ -25,7 +29,6 @@ public class Tournament
     public ICollection<Player> Players { get; set; } = new List<Player>();
     public ICollection<Category> Categories { get; set; } = new List<Category>();
     public ICollection<Scorecard> Scorecards { get; set; } = new List<Scorecard>();
-    //public ICollection<Result> Results { get; set; } = new List<Result>();
 
     public Tournament(TournamentPostDTO tournamentPostDTO)
     {
@@ -67,7 +70,7 @@ public class Tournament
         
         return Results.Ok(new SingleTournamentDTO(tournament));
     }
-    public static async Task<IResult> CreateTournament(BgContext db, TournamentPostDTO tournamentdto)
+    public static async Task<IResult> CreateTournament(BgContext db, TournamentPostDTO tournamentdto)// falta agregar la course por defecto
     {
         var tournament = new Tournament(tournamentdto);
         Category category = Category.GetDefaultCategory(tournament, db);
@@ -201,7 +204,7 @@ public class Tournament
             tournament.Players.Add(player);
             tournament.Count = tournament.Players.Count;
             player.AssignCategory(tournament);
-            Course defaultCourse = Course.GetDefaultCourse(db);
+            Course defaultCourse = Course.GetDefaultCourse(db);// arreglar esto
             await db.SaveChangesAsync();
              foreach (Category category in tournament.Categories)
             {
@@ -230,33 +233,8 @@ public class Tournament
         }
         return Results.NoContent();
     }
-    public static async Task<IResult> CalculateResult(BgContext db, Tournament tournament)
-    {
-        foreach (var scorecard in tournament.Scorecards)
-        {
-            var holeScores = await Scorecard.SResultInScorecard(scorecard.Id, db);
-
-            if (holeScores is OkObjectResult okResult && okResult.Value is List<ScorecardResult> scorecardResults)
-            {
-                var grossScore = scorecard.CalculateGrossScore();
-                var netScore = scorecard.CalculateNetscore();
-
-                var result = new Result
-                {
-                    TournamentId = scorecard.TournamentId,
-                    PlayerId = scorecard.PlayerId,
-                    GrossScore = grossScore,
-                    NetScore = netScore
-                };
-
-                db.Results.Add(result);
-            }
-        }
-        await db.SaveChangesAsync();
-    }
-
-   
-
+    
+}
 
    /* public async Task<IResult> AssignCategoriesReset(int Id, BgContext db)
     {
@@ -327,4 +305,4 @@ public class Tournament
         }
         return Results.Ok(results.ToArray());
     } */
-}
+

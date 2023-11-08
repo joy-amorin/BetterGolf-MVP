@@ -1,6 +1,7 @@
 ﻿using GolfApi.Data;
 using Microsoft.EntityFrameworkCore;
-using GolfApi.Models.Engine;
+using GolfApi.Models.DTOs.ScorecardResultDTOs;
+
 
 namespace GolfApi.Models;
 
@@ -8,12 +9,18 @@ public class Result
 {
     public int Id { get; set; }
     public Player Player { get; set; }
-    public int NetScore { get; set; }
+    public int Score { get; set; }
     public int Placement { get; set; }
-    public Result(Player player, int NetScore)
+    public Result(Player player, int placement, int score)
     {
         Player = player;
-        this.NetScore = NetScore;
+        Score = score;
+        Placement = placement;
+    }
+    public Result(Player player, int score)
+    {
+        Player = player;
+        Score = score;
     }
     public Result() 
     {
@@ -46,6 +53,13 @@ public class Result
         if (result == null) { return Results.NotFound(); }
 
         return Results.Ok(result);
+    }
+    public static async Task<IResult> CreateResult(BgContext db, Result result)
+    {
+        db.Results.Add(result);
+        await db.SaveChangesAsync();
+
+        return Results.Created($"/Results/{result.Id}", result);
     }
     public static async Task<IResult> UpdateResult(int id, BgContext db, Result InputResult)
     {
