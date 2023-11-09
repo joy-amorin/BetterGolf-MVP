@@ -3,11 +3,6 @@ namespace GolfApi.Models.Engine
 {
     public static class ResultsEngine
     {
-        public static int MedalNetScore(List<ScorecardResult> scorecardResults)
-        {
-            int totalStrokes = scorecardResults.Sum(x => x.Strokes);
-            return totalStrokes;
-        }
         public static int MedalScratchScore(int playingHandicap, List<ScorecardResult> scorecardResults)
         {
             int totalStrokes = scorecardResults.Sum(x => x.Strokes);
