@@ -204,7 +204,7 @@ public class Tournament
             tournament.Players.Add(player);
             tournament.Count = tournament.Players.Count;
             player.AssignCategory(tournament);
-            Course defaultCourse = Course.GetDefaultCourse(db);// arreglar esto
+            Course defaultCourse = Course.GetDefaultCourse(db);
             await db.SaveChangesAsync();
              foreach (Category category in tournament.Categories)
             {
@@ -234,75 +234,11 @@ public class Tournament
         return Results.NoContent();
     }
     
+    public void CalculateResults()
+    {
+       // Calcular resultados segun el tipo de torneo que se pasa como string al crear un, puede ser tipo medalScratch o stableford
+       // estan en Engine para usarse las funciones que hacen los calculos, se llamarian dentro de CalculateResults() segun el tipo de torneo
+    }
 }
 
-   /* public async Task<IResult> AssignCategoriesReset(int Id, BgContext db)
-    {
-        var tournament = await db.Tournaments.Include(x =>  x.Categories).Include(x => x.Players).FirstOrDefaultAsync(x => x.Id == Id);
-        if (tournament == null) { return Results.NotFound(); };
-
-        foreach (Player p in tournament.Players)
-        {
-            p.AssignCategory(tournament);
-        }
-        await db.SaveChangesAsync();
-        return Results.NoContent();
-    }
-     public static async Task<IResult> TournamentResults(int Id, bool DiscountHandicap, BgContext db)
-    {
-        var tournament = await db.Tournaments
-            .Include(x => x.TournamentType)
-            .Include(x => x.Scorecards)
-                .ThenInclude(y => y.ScorecardResults)       
-            .Include(x=> x.Scorecards)
-                .ThenInclude(x => x.Player)
-            .Include(x=> x.Scorecards)
-                .ThenInclude(x=>x.PlayingHandicap)
-            .Include(x => x.Categories)
-            .FirstOrDefaultAsync(x => x.Id == Id);
-        if (tournament == null) { return Results.NotFound(); };
-
-
-        List<Result> results = new();
-        int placement = 1;
-        if (tournament.TournamentType.ToLower() == "medal")
-        {
-            if (DiscountHandicap)
-            {
-                foreach (Scorecard scorecard in tournament.Scorecards)
-                {
-                    results.Add(new Result(scorecard.Player, ResultsEngine.MedalNetScore(scorecard.ScorecardResults)));
-                }
-            }
-            else
-            {
-                foreach (Scorecard scorecard in tournament.Scorecards)
-                {
-                    results.Add(new Result(scorecard.Player, ResultsEngine.MedalScratchScore(scorecard.PlayingHandicap, scorecard.ScorecardResults)));
-                }
-            }   
-        }
-        if (tournament.TournamentType.ToLower() == "stableford")
-        {
-            if (DiscountHandicap)
-            {
-                foreach (Scorecard scorecard in tournament.Scorecards)
-                {
-                    results.Add(new Result(scorecard.Player, ResultsEngine.StablefordScore(scorecard.ScorecardResults)));
-                }
-            }
-            else
-            {
-                foreach (Scorecard scorecard in tournament.Scorecards)
-                {
-                    results.Add(new Result(scorecard.Player, ResultsEngine.StablefordScore(scorecard.AdjustScorecardResultsByHandicap())));
-                }
-            }
-        }
-        foreach (Result result in results.OrderBy(x => x.Score))
-        {
-            result.Placement = placement++;
-        }
-        return Results.Ok(results.ToArray());
-    } */
-
+  

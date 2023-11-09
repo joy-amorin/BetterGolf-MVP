@@ -176,7 +176,10 @@ public class Player
         };
         foreach (Hole hole in selectedCourse.Holes)
         {
-            playerScorecard.ScorecardResults.Add(new ScorecardResult { Hole = hole });
+            playerScorecard.ScorecardResults.Add(new ScorecardResult 
+            { Hole = hole,
+              Scorecard = playerScorecard,
+            });
         }
         if (category.Tournament != null)
         {
@@ -184,5 +187,4 @@ public class Player
         }
         Scorecards.Add(playerScorecard);
     }
-
 }

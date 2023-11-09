@@ -13,7 +13,8 @@ public class Scorecard
     public Player? Player { get; set; }
     public int PlayerId { get; set; }
     public Tournament? Tournament { get; set; }
-    public int? TournamentId { get; set; }
+    public int TournamentId { get; set; }
+    public int TotalStrokes { get; set; }
 
 
     public Scorecard()
@@ -77,5 +78,4 @@ public class Scorecard
         await db.SaveChangesAsync();
         return Results.NoContent();
     }
-    //llamar todas las scorecardresults de un scorecard y aplicar las funciones en Engine para calulcar los resultados
 }

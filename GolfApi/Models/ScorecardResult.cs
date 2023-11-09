@@ -12,12 +12,14 @@ public class ScorecardResult
     public int Strokes { get; set; }
     public int RoundNumber { get; set; }
     public Hole Hole { get; set; } = null!;
+    public Scorecard Scorecard { get; set; }
+    public int ScorecardId { get; set; }
+
     public ScorecardResult(int strokes, int roundNumber, Hole hole)
     {
         Strokes = strokes;
         RoundNumber = roundNumber;
         Hole = hole;
-
     }
     public ScorecardResult(ScorecardResultPostDTO scorecardResultPostDTO)
     {
@@ -53,13 +55,21 @@ public class ScorecardResult
 
     public static async Task<IResult> UpdateScorecardResult(int id, BgContext db, ScorecardResultPostDTO InputScorecardResult)
     {
-        var scorecardresult = await db.ScorecardResults.Include(x => x.Hole).FirstOrDefaultAsync(x => x.Id == id);
+        var scorecardresult = await db.ScorecardResults.Include(x => x.Scorecard)
+        .ThenInclude(x => x.ScorecardResults).FirstOrDefaultAsync(x => x.Id == id);
+
         if (scorecardresult == null)
         {
             return Results.NotFound();
         }
 
         scorecardresult.Strokes = InputScorecardResult.Strokes;
+        await db.SaveChangesAsync();
+
+        if (scorecardresult.Scorecard != null && scorecardresult.Scorecard.ScorecardResults != null)
+        {
+            scorecardresult.Scorecard.TotalStrokes = scorecardresult.Scorecard.ScorecardResults.Sum(result => result.Strokes);
+        }
 
         await db.SaveChangesAsync();
         return Results.NoContent();
