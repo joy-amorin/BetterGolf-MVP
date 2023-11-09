@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-22.04.3
+    steps:
+      - name: Echo the hello world
+        run: echo "Hello world"
+      - name: Echo the hello world again
+        run: echo "Hello world again"

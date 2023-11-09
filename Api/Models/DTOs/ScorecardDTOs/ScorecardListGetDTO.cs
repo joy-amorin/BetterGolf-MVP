@@ -1,4 +1,4 @@
-namespace GolfApi.Models.DTOs.ScorecardDTOs;
+namespace Api.Models.DTOs.ScorecardDTOs;
 
 public class ScorecardListGetDTO
 {

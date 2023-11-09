@@ -1,4 +1,4 @@
-﻿namespace GolfApi.Models.DTOs.PlayerDTOs;
+﻿namespace Api.Models.DTOs.PlayerDTOs;
 
 public class PlayerListGetDTO
 {

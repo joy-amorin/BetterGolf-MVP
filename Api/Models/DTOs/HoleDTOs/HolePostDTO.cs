@@ -1,4 +1,4 @@
-namespace GolfApi.Models.DTOs.HoleDTOs;
+namespace Api.Models.DTOs.HoleDTOs;
 public class HolePostDTO
 {
     public int Par { get; set; }

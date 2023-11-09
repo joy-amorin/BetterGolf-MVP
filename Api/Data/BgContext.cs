@@ -1,7 +1,7 @@
-﻿using GolfApi.Models;
+﻿using Api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GolfApi.Data
+namespace Api.Data
 {
     public class BgContext : DbContext
     {

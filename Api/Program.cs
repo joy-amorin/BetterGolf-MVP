@@ -1,8 +1,8 @@
-using GolfApi.Data;
-using GolfApi.Models;
+using Api.Data;
+using Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using GolfApi.Models.DTOs.CategoryDTOs;
+using Api.Models.DTOs.CategoryDTOs;
 
 
 internal class Program
@@ -17,7 +17,7 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "BetterGolf API", Description = "BG Api", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Better-Golf", Description = "API", Version = "v1" });
         });
         builder.Services.AddCors(options =>
         {
@@ -35,7 +35,7 @@ internal class Program
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "BG api v1");
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Beter-Golf Api v1");
         });
 
         app.UseCors("TodoPasa");

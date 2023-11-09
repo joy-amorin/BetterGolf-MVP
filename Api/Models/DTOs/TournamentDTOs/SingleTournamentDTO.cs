@@ -1,6 +1,6 @@
 using Microsoft.Identity.Client;
 
-namespace GolfApi.Models.DTOs.TournamentDTOs;
+namespace Api.Models.DTOs.TournamentDTOs;
 
 public class SingleTournamentDTO
 {

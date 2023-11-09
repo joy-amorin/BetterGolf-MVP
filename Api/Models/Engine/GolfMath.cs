@@ -1,4 +1,4 @@
-namespace GolfApi.Models.Engine;
+namespace Api.Models.Engine;
 
 public static class GolfMath
 {

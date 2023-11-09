@@ -1,9 +1,13 @@
-﻿using GolfApi.Data;
+﻿using Api.Data;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using GolfApi.Models.DTOs.ScorecardResultDTOs;
 
+=======
+using Api.Models.Engine;
+>>>>>>> e48f691 (Fixed using Api)
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class Result
 {

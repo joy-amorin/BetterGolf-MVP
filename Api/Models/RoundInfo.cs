@@ -1,7 +1,7 @@
-using GolfApi.Data;
+using Api.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class RoundInfo
 {

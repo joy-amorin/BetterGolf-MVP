@@ -1,11 +1,11 @@
-using GolfApi.Data;
-using GolfApi.Models.DTOs.PlayerDTOs;
-using GolfApi.Models.DTOs.TournamentDTOs;
+using Api.Data;
+using Api.Models.DTOs.PlayerDTOs;
+using Api.Models.DTOs.TournamentDTOs;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using GolfApi.Models.Engine;
+using Api.Models.Engine;
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class Player
 {

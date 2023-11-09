@@ -1,9 +1,15 @@
-﻿using GolfApi.Data;
+﻿using Api.Data;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using GolfApi.Models.DTOs.TournamentDTOs;
 using GolfApi.Models.DTOs.PlayerDTOs;
 using GolfApi.Models.DTOs.CategoryDTOs;
 using GolfApi.Models.DTOs.ScorecardDTOs;
+=======
+using Api.Models.DTOs.TournamentDTOs;
+using Api.Models.DTOs.PlayerDTOs;
+using Api.Models.DTOs.CategoryDTOs;
+>>>>>>> e48f691 (Fixed using Api)
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -14,7 +20,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class Tournament
 {

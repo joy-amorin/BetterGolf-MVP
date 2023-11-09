@@ -1,12 +1,12 @@
-using GolfApi.Data;
-using GolfApi.Models.DTOs.CategoryDTOs;
-using GolfApi.Models.DTOs.PlayerDTOs;
+using Api.Data;
+using Api.Models.DTOs.CategoryDTOs;
+using Api.Models.DTOs.PlayerDTOs;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
 
-namespace GolfApi.Models;
+namespace Api.Models;
 
 public class Category
 {
