@@ -1,7 +1,7 @@
 using Api.Data;
 using Api.Models.DTOs.ScorecardResultDTOs;
 using Microsoft.EntityFrameworkCore;
-using GolfApi.Models;
+using Api.Models;
 
 
 namespace Api.Models;

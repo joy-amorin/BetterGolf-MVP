@@ -1,19 +1,16 @@
 ﻿using Api.Data;
 using Microsoft.EntityFrameworkCore;
-<<<<<<< HEAD
-using GolfApi.Models.DTOs.TournamentDTOs;
-using GolfApi.Models.DTOs.PlayerDTOs;
-using GolfApi.Models.DTOs.CategoryDTOs;
-using GolfApi.Models.DTOs.ScorecardDTOs;
-=======
 using Api.Models.DTOs.TournamentDTOs;
 using Api.Models.DTOs.PlayerDTOs;
 using Api.Models.DTOs.CategoryDTOs;
->>>>>>> e48f691 (Fixed using Api)
+using Api.Models.DTOs.ScorecardDTOs;
+using Api.Models.DTOs.TournamentDTOs;
+using Api.Models.DTOs.PlayerDTOs;
+using Api.Models.DTOs.CategoryDTOs;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http.HttpResults;
-using GolfApi.Models.Engine;
+using Api.Models.Engine;
 using System.Diagnostics.Eventing.Reader;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -197,7 +194,7 @@ public class Tournament
         return Results.Ok(scorecardDtos);
     }
     //funcion que agrega un jugador a un torneo si el jugador no esta ya registrado
-        public static async Task<IResult> AddTournamentPlayer(int tournamentId, int playerId, BgContext db)
+    public static async Task<IResult> AddTournamentPlayer(int tournamentId, int playerId, BgContext db)
     {
         var tournament = await db.Tournaments.Include(x => x.Players).Include(x => x.Categories).FirstOrDefaultAsync(x => x.Id == tournamentId);
         if (tournament == null) return Results.NotFound();
