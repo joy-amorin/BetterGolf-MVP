@@ -236,12 +236,7 @@ public class Tournament
         }
         return Results.NoContent();
     }
-    
-    public void CalculateResults()
-    {
-       // Calcular resultados segun el tipo de torneo que se pasa como string al crear un, puede ser tipo medalScratch o stableford
-       // estan en Engine para usarse las funciones que hacen los calculos, se llamarian dentro de CalculateResults() segun el tipo de torneo
-    }
+
 }
 
   
