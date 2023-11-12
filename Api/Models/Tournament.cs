@@ -195,6 +195,7 @@ public class Tournament
     }
     //funcion que agrega un jugador a un torneo si el jugador no esta ya registrado
     public static async Task<IResult> AddTournamentPlayer(int tournamentId, int playerId, BgContext db)
+
     {
         var tournament = await db.Tournaments.Include(x => x.Players).Include(x => x.Categories).FirstOrDefaultAsync(x => x.Id == tournamentId);
         if (tournament == null) return Results.NotFound();
@@ -236,7 +237,12 @@ public class Tournament
         }
         return Results.NoContent();
     }
-
+    
+    public void CalculateResults()
+    {
+       // Calcular resultados segun el tipo de torneo que se pasa como string al crear un, puede ser tipo medalScratch o stableford
+       // estan en Engine para usarse las funciones que hacen los calculos, se llamarian dentro de CalculateResults() segun el tipo de torneo
+    }
 }
 
   
