@@ -1,0 +1,11 @@
+Para hacer funcionar la base de dato localmente tienen que descargar postgres https://www.postgresql.org/download/windows/
+luego tienen que estar en GolfApi y escribir 
+
+
+EN LA CONSOLA:
+dotnet ef migrations add NOMBRE-DE-MIGRACION 
+dotnet ef database update
+
+EN VISUAL STUDIO
+Add-Migration NOMBRE-DE-MIGRACION
+Update-Database

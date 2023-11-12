@@ -138,6 +138,7 @@ public class Course
     }
     public static Course GetDefaultCourse(BgContext db)
     {
+      
         var existingCourse = db.Courses.Include(c => c.Holes).FirstOrDefault(c => c.Name == "Default Course");
         if (existingCourse != null)
         {

@@ -1,7 +1,7 @@
 ﻿using Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Api.Models.DTOs.ScorecardResultDTOs;
-
+using Api.Models.Engine;
 
 namespace Api.Models;
 
