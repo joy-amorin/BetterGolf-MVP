@@ -62,7 +62,7 @@ export function CoursesFormPage( { onclose, setRefetch } ) {
   }, []);
 
   return (
-		<div className="max-w-xl mx-auto">
+		<div className="max-w-xl mx-auto w-2/4">
 		
 				<form onSubmit={onSubmit}>
 					<div className="mb-3">
@@ -111,30 +111,7 @@ export function CoursesFormPage( { onclose, setRefetch } ) {
       </Button>
     </div>
   )}
-  {params.id && (
-    <div className="flex justify-end">
-      <Button
-        color="danger"
-        onClick={async () => {
-          navigate(`/courses/${params.id}/holes`);
-        }}
-        >
-      ver todos los holes in course
-      </Button>
-    </div>
-  )}
-  {params.id && (
-    <div className="flex justify-end">
-      <Button
-        color="danger"
-        onClick={async () => {
-          navigate(`/courses/${params.id}/addcourses`);
-        }}
-        >
-      Agregar holes
-      </Button>
-    </div>
-  )}
+ 
 </div>
 );
 }	

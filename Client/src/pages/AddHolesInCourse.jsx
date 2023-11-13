@@ -1,5 +1,7 @@
-import { getHolesInCourses, deleteHolesInCourses } from "../api/courses.api";
-import { DeleteIcon } from "../assets/DeleteIcon";
+import { getHolesInCourses, addHoleToCourse } from "../api/courses.api";
+import { EditIcon } from "../assets/EditIcon";
+import { Button } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 import {
   Table,
   TableHeader,
@@ -7,18 +9,20 @@ import {
   TableRow,
   TableCell,
   TableColumn,
-  Button,
 } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { PlayersList } from "../components/PlayersList";
+import { HolesFormPage } from "./HolesFormPage";
 
-export function CoursesAndHole() {
+export function AddHolesInCourse() {
   const [holes, setholes] = useState([]);
   const [refetch, setRefetch] = useState(true);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const params = useParams(); // para obtener el id de la url
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     async function fetchHoles() {
       if (params.id) {
@@ -48,7 +52,7 @@ export function CoursesAndHole() {
             <TableColumn>strokeIndex</TableColumn>
             <TableColumn>Actions</TableColumn>
           </TableHeader>
-          <TableBody >
+          <TableBody>
             {holes.map((hole) => (
               <TableRow key={hole.id}>
                 <TableCell>{hole.par}</TableCell>
@@ -56,11 +60,11 @@ export function CoursesAndHole() {
                 <TableCell>{hole.strokeIndex}</TableCell>
                 <TableCell>
                   <div className="relative flex items-center gap-2">
-                    <Tooltip color="danger" content="Delete">
+                    <Tooltip color="success" content="Delete">
                       <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                        <DeleteIcon
-                          onClick={async () => {
-                            await deleteHolesInCourses(params.id, hole.id);
+                        <EditIcon
+                          onClick={() => {
+                            navigate(`/Courses/${params.id}/EditHole/${hole.id}`);
                           }}
                         />
                       </span>
@@ -72,6 +76,36 @@ export function CoursesAndHole() {
           </TableBody>
         </Table>
       </div>
+      <Button
+        onClick={() => {
+          navigate(`/Courses/${params.id}/`);
+        }}
+      >
+        Back
+      </Button>
+
+
+
+  
+    <div>
+      <Button onPress={onOpen} color="primary" className="mb-3">Add Hole</Button>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        isDismissable={false}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">New Hole</ModalHeader>
+              <ModalBody>
+                <HolesFormPage onclose={onClose} setRefetch={setRefetch}/>
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </div>
 
     </div>
   );

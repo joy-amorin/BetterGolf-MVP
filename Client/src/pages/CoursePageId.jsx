@@ -103,7 +103,7 @@ export function CoursePageId() {
                 <Button onPress={() => handleOpen("")}>
                   Edit info
                   <Modal
-                    size={"2xl"}
+                    size={"1xl"}
                     backdrop={"blur"}
                     isOpen={isOpen}
                     onOpenChange={onOpenChange}
@@ -112,7 +112,7 @@ export function CoursePageId() {
                     <ModalContent>
                       {(onClose) => (
                         <>
-                          <ModalHeader className="flex flex-col gap-1"></ModalHeader>
+                          <ModalHeader className="flex flex-col gap-1"> Course</ModalHeader>
                           <ModalBody>
                             <CoursesFormPage
                               onClose={onClose}
@@ -146,14 +146,14 @@ export function CoursePageId() {
               <CardHeader>
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
-                    ? `No players on ${course.name}`
-                    : `${numOfPlayers} Player${
+                    ? `No Holes on ${course.name}`
+                    : `${numOfPlayers} Hole${
                         numOfPlayers === 1 ? "" : "s"
                       } on ${course.name}`}
                 </h1>
               </CardHeader>
               <Divider />
-              <CardBody>
+              <CardBody className="overflow-auto">
                {/*  <PlayersListForCourse CourseId={id} /> */}
                <CoursesAndHole />
       

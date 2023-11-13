@@ -1,4 +1,4 @@
-import {  getAllTournamentCategories, deletecategorieInTournament, getAllScorecardsInTournament } from '../api/tournaments.api';
+import {  getAllTournamentCategories, deleteCategoriesInTournament, getAllScorecardsInTournament } from '../api/tournaments.api';
 
 import { DeleteIcon } from "../assets/DeleteIcon";
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn } from "@nextui-org/react";
@@ -48,7 +48,7 @@ export function TournamentCategories() {
         <TableHeader>
           
           <TableColumn>Name</TableColumn>
-          <TableColumn> Scorecard</TableColumn>
+          {/* <TableColumn> Scorecard</TableColumn> */}
           <TableColumn>Sex</TableColumn>
           <TableColumn>Count</TableColumn>
           <TableColumn>Actions</TableColumn>
@@ -57,7 +57,7 @@ export function TournamentCategories() {
             {categories.map((categorie) => (
             <TableRow key={categorie.id}>
               <TableCell>{categorie.name}</TableCell>
-              <TableCell>{scorecard.playingHandicap}</TableCell>
+              {/* <TableCell>{scorecard.playingHandicap}</TableCell> */}
               <TableCell>{categorie.sex}</TableCell>
               <TableCell>{categorie.count}</TableCell>
               <TableCell>
@@ -67,7 +67,7 @@ export function TournamentCategories() {
                     <span className="text-lg text-danger cursor-pointer active:opacity-50">
                       <DeleteIcon
                         onClick={async () => {
-                          await deletecategorieInTournament(params.id, categorie.id);
+                          await deleteCategoriesInTournament(params.id, categorie.id);
                          setRefetch(true);
                         }}
                       />

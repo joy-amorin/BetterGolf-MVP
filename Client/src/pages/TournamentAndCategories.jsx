@@ -159,7 +159,7 @@ export function TournamentCategoriesPage() {
                       navigate(`/tournaments/${params.id}/addCategory`);
                     }}
                   >
-                    Add player
+                    Add Category
                   </Button>
                 )}
               </CardFooter>
