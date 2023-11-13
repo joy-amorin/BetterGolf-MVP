@@ -10,9 +10,7 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
-        // las connection strings como se le dice al chorizo de abajo no deberian estar expuestas asi, pero en un ambiente de prueba local no deberia ser tan malo
-
+        builder.Configuration["Urls"] = "http://*:5000";
         builder.Services.AddDbContext<BgContext>(options => options.UseNpgsql("User ID=postgres;Password=2002;Host=localhost;Port=5432;Database=BetterGolf;Pooling=true;Connection Lifetime=0;"));
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
