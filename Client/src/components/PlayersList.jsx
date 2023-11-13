@@ -20,7 +20,7 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@nextui-org/react";
-import { Tournamentsforplayer } from "../api/players.api";
+import { tournamentsForPlayer } from "../api/players.api";
 
 export function PlayersList({ refetch, setRefetch }) {
   const [players, setPlayers] = useState([]);
@@ -96,7 +96,7 @@ export function PlayersList({ refetch, setRefetch }) {
                     <Button onClick={
 
                       async () => { 
-                        const resultado = await Tournamentsforplayer(player.id)
+                        const resultado = await tournamentsForPlayer(player.id)
                         setTournaments(resultado.data);}
                     } className=" bg-green-600">
                     Torneos Activos</Button>

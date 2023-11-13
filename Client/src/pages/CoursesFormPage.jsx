@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
@@ -11,8 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { Button, Input } from "@nextui-org/react";
 
-export function CoursesFormPage( { onclose, setRefetch } ) {
-  
+export function CoursesFormPage({ onclose, setRefetch }) {
   const {
     register,
     handleSubmit,
@@ -24,7 +22,8 @@ export function CoursesFormPage( { onclose, setRefetch } ) {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       await updateCourse(params.id, data);
-      toast.success("Updated Course succesfully"),  navigate("/Courses"),
+      toast.success("Updated Course succesfully"),
+        navigate("/Courses"),
         {
           position: "bottom-right",
           style: {
@@ -55,7 +54,6 @@ export function CoursesFormPage( { onclose, setRefetch } ) {
         setValue("courseSlope", res.data.courseSlope);
         setValue("courseRating", res.data.courseRating);
         setValue("par", res.data.par);
-       
       }
     }
     loadCourse();
@@ -63,7 +61,6 @@ export function CoursesFormPage( { onclose, setRefetch } ) {
 
   return (
 		<div className="max-w-xl mx-auto w-2/4">
-		
 				<form onSubmit={onSubmit}>
 					<div className="mb-3">
 						<Input
@@ -111,8 +108,6 @@ export function CoursesFormPage( { onclose, setRefetch } ) {
       </Button>
     </div>
   )}
- 
 </div>
 );
-}	
-				
+}

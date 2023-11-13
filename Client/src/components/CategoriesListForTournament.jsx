@@ -30,29 +30,23 @@ export function CategoryListForTournament( ) {
         aria-label="Example static collection table"
       >
         <TableHeader>
-          
           <TableColumn>Name</TableColumn>
-         
           <TableColumn>Actions</TableColumn>
         </TableHeader>
         <TableBody>
-            {Category.map((player) => (
+          {Category.map((player) => (
             <TableRow key={player.id}>
-             
               <TableCell>{player.name}</TableCell>
               <TableCell>
                 <div className="relative flex items-center gap-2">
                   <Tooltip content="Edit">
-                      <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                        <EditIcon 
-                        onClick={async () =>
-                          {  addcategorieToTournament(params.id, player.id); 
-                          
-                          }
-                        }
-                        />
-                      </span>
-                    
+                    <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                      <EditIcon
+                        onClick={async () => {
+                          addcategorieToTournament(params.id, player.id);
+                        }}
+                      />
+                    </span>
                   </Tooltip>
                 </div>
               </TableCell>

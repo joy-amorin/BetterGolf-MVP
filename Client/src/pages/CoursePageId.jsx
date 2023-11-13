@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   getCourseById,
-
   deleteCourse,
   getHolesInCourses,
-} from "../api/Courses.api";
-
+} from "../api/courses.api";
 import {
   Card,
   CardHeader,
@@ -156,7 +154,6 @@ export function CoursePageId() {
               <CardBody className="overflow-auto">
                {/*  <PlayersListForCourse CourseId={id} /> */}
                <CoursesAndHole />
-      
               </CardBody>
               <CardFooter>
                 {params.id && (

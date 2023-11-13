@@ -26,5 +26,8 @@ dist-ssr
 # IDE - VSCode
 .vscode/*
 
+# Migrations
+Migrations/*
+
 # Vite
 .vite

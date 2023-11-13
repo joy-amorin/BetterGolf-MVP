@@ -1,4 +1,3 @@
-
 import {  getAllPlayersInTournament, addPlayerToTournament, deletePlayerInTournament } from '../api/tournaments.api';
 
 import { DeleteIcon } from "../assets/DeleteIcon";
@@ -29,7 +28,7 @@ export function TournamentandPLayer() {
     fetchPlayers();
     }
   }, [refetch]);
-
+ 
   return (
     <div>
       <div className="flex flex-col gap-3 ">

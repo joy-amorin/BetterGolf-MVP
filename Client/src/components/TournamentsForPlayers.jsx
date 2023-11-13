@@ -1,21 +1,19 @@
-import { Tournamentsforplayer } from "../api/players.api";
-import { useEffect, useState,  } from "react";
+import { tournamentsForPlayer } from "../api/players.api";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {Button} from "@nextui-org/react";
-export function TournamentsForPlayers() {
-
+import { Button } from "@nextui-org/react";
+export function tournamentsForPlayers() {
   const [tournaments, setTournaments] = useState([]);
   const params = useParams();
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     async function Tournamentsforp(valor) {
-      const res = await Tournamentsforplayer(valor);
+      const res = await tournamentsForPlayer(valor);
       setTournaments(res.data);
-     
     }
     Tournamentsforp(params.id);
-  }, [ ]);
+  }, []);
 
   return (
     <div className="flex flex-col w-2/5 bg-indigo-500 rounded">
@@ -24,14 +22,22 @@ export function TournamentsForPlayers() {
         {tournaments.map((tournament) => (
           <li key={tournament.id}>
             <span className="font-bold">{tournament.name}</span>
-            <br/>
+            <br />
             <span className="text-sm text-green-500">
               {tournament.startDate} - {tournament.endDate}
             </span>
           </li>
         ))}
       </ul>
-      <Button onClick={async () =>{ navigate(`/players`)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/5 self-center">  Come Back</Button>
+      <Button
+        onClick={async () => {
+          navigate(`/players`);
+        }}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/5 self-center"
+      >
+        {" "}
+        Come Back
+      </Button>
     </div>
   );
 }

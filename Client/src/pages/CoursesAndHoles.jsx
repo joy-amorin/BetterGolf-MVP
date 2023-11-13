@@ -72,7 +72,6 @@ export function CoursesAndHole() {
           </TableBody>
         </Table>
       </div>
-
     </div>
   );
 }

@@ -43,11 +43,14 @@ export function PlayerPage() {
               </p>
               <p>Handicap: {player.handicapIndex}</p>
               <p>Tournaments:</p>
-              </CardBody>
-              <CardFooter>
-                <Button>Edit player</Button>
-                <Button className="ml-3" color="danger"> Delete player</Button>
-              </CardFooter>
+            </CardBody>
+            <CardFooter>
+              <Button>Edit player</Button>
+              <Button className="ml-3" color="danger">
+                {" "}
+                Delete player
+              </Button>
+            </CardFooter>
           </Card>
         </div>
       ) : (

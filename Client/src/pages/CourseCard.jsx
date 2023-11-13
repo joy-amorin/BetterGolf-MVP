@@ -58,3 +58,4 @@ export function CardForTournaments({setRefetch, course}) {
             </CardBody>
           </Card>
           }
+

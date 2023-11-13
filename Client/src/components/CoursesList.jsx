@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import { getAllCourses, deleteCourse } from "../api/courses.api";
-import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, Tooltip, RadioGroup, Radio } from "@nextui-org/react";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableColumn,
+  TableRow,
+  TableCell,
+  Tooltip,
+  RadioGroup,
+  Radio,
+} from "@nextui-org/react";
 import { EditIcon } from "../assets/EditIcon";
 import { DeleteIcon } from "../assets/DeleteIcon";
 import { Link, useNavigate } from "react-router-dom";
@@ -53,8 +63,10 @@ export function CoursesList() {
                           const accepted = window.confirm("Confirm");
                           if (accepted) {
                             await deleteCourse(course.id);
-                              var updatedCourses = courses.filter(Course => Course.id !== course.id);
-                              setCourses(updatedCourses);  
+                            var updatedCourses = courses.filter(
+                              (Course) => Course.id !== course.id
+                            );
+                            setCourses(updatedCourses);
                             toast.success("Course deleted");
                           }
                         }}

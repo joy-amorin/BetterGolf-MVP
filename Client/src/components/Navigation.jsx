@@ -10,8 +10,12 @@ export function Navigation() {
   };
 
   return (
-    <Navbar position="static" className="bg-gradient-to-r from-gray-700 via-gray-900 to-black">
-      <div className="flex justify-between py-5 p-3" onClick={handleNavigate} style={{ cursor: "pointer" }}>
+    <Navbar position="static">
+      <div
+        className="flex justify-between py-5 p-3"
+        onClick={handleNavigate}
+        style={{ cursor: "pointer" }}
+      >
         <p className="text-2xl font-bold">Better Golf</p>
       </div>
       <div className="absolute top-5 right-5">

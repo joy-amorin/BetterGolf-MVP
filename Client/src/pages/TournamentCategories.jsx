@@ -8,7 +8,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { set } from 'react-hook-form';
 
 export function TournamentCategories() {
-
   const [categories, setcategories] = useState([]);
   const [scorecard, setScorecard] = useState([]); //
   const [refetch, setRefetch] = useState(true);

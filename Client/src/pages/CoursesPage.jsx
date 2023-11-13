@@ -37,7 +37,6 @@ export function CoursesPage() {
   const [refetch, setRefetch] = useState(true);
   // Usa useDisclosure para manejar el estado del modal
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
   const navigate = useNavigate();
   useEffect(() => {
     //  verificar si refetch es true
@@ -149,6 +148,19 @@ export function CoursesPage() {
                     </DropdownMenu>
                   </Dropdown>
                 </div>
+                <Dropdown>
+      <DropdownTrigger>
+        <Button 
+          variant="shadow"
+          color="default" 
+        >
+          Detalles
+        </Button>
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Static Actions">
+        <DropdownItem key="new"> <Co valor={course.id} /></DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
               </div>
             </CardFooter>
           </Card>

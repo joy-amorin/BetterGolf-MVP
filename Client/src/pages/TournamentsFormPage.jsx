@@ -39,7 +39,6 @@ export function TournamentsFormPage({ onClose, setRefetch }) {
     setRefetch();
     onClose();
   });
-  
 
   useEffect(() => {
     async function loadTournament() {

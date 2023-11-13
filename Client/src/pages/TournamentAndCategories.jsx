@@ -34,7 +34,6 @@ export function TournamentCategoriesPage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
   const params = useParams();
-
   const [size, setSize] = React.useState("md");
   const [backdrop, setBackdrop] = React.useState("opaque");
 
@@ -65,7 +64,6 @@ export function TournamentCategoriesPage() {
         const response = await getAllTournamentCategories(id);
         setNumOfPlayers(response.data.length);
     
-      
     }
 
     fetchTournament();

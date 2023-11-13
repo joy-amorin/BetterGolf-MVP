@@ -11,7 +11,7 @@ import { SideBar } from "./components/SideBar";
 import { CoursesPage } from "./pages/CoursesPage";
 import { CoursesFormPage } from "./pages/CoursesFormPage";
 import { CategoriesFormPage } from "./pages/CategoriesFormPage";
-import { TournamentandPLayer } from "./pages/TournamentandPLayer";
+import { TournamentandPLayer } from "./pages/TournamentAndPlayer";
 import { PlayersListForTournament } from "./components/PlayersListForTournament";
 import { CoursesAndHole } from "./pages/CoursesAndHoles";
 import { TournamentPage } from "./pages/TournamentPage";
@@ -67,7 +67,6 @@ function App() {
           </Routes>
         </div>
       </div>
-    </div>
     </BrowserRouter>
   );
 }

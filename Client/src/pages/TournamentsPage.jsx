@@ -19,7 +19,18 @@ export function TournamentsPage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [size, setSize] = React.useState("md");
   const [backdrop, setBackdrop] = React.useState("opaque");
-  const sizes = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "full"];
+  const sizes = [
+    "xs",
+    "sm",
+    "md",
+    "lg",
+    "xl",
+    "2xl",
+    "3xl",
+    "4xl",
+    "5xl",
+    "full",
+  ];
   const backdrops = ["opaque", "blur", "transparent"];
   const handleOpen = (size) => {
     setSize(size);
@@ -52,7 +63,10 @@ export function TournamentsPage() {
               <>
                 <ModalHeader></ModalHeader>
                 <ModalBody>
-                  <TournamentsFormPage onClose={onClose} setRefetch={handleRefetch} />
+                  <TournamentsFormPage
+                    onClose={onClose}
+                    setRefetch={handleRefetch}
+                  />
                 </ModalBody>
               </>
             )}
@@ -62,7 +76,10 @@ export function TournamentsPage() {
       <div className="text-center py-4">
         <Tabs value={activeTab} onChange={setActiveTab}>
           <Tab key="active" title="Active">
-            <TournamentsList refetch={refetch} status={activeTab.toLowerCase()} />
+            <TournamentsList
+              refetch={refetch}
+              status={activeTab.toLowerCase()}
+            />
           </Tab>
           <Tab key="completed" title="Completed">
             {/* Empty Tab content */}

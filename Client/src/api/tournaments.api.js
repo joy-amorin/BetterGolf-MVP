@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const tournamentsApi = axios.create({
-	baseURL: 'http://localhost:5100/api/Tournaments',
+	baseURL: 'http://localhost:5100/api/tournaments',
 });
 
 export const getAllTournaments = () => tournamentsApi.get('/');
@@ -16,13 +16,16 @@ export const updateTournament = (id, tournament) => tournamentsApi.put(`/${id}`,
 
 export const getAllTournamentCategories = (id) => tournamentsApi.get(`/${id}/categories`);
 
-export const addPlayerToTournament = (tid, playerid) => tournamentsApi.post(`/${tid}/Players?tournamentId=${tid}&playerId=${playerid}`);
+export const addPlayerToTournament = (tid, playerid) => tournamentsApi.post(`/${tid}/players?tournamentId=${tid}&playerId=${playerid}`);
 
 export const getAllPlayersInTournament = (id) => tournamentsApi.get(`/${id}/players`);
 
 export const deletePlayerInTournament = (tid, pid) => tournamentsApi.delete(`/${tid}/players/${pid}?tournamentId=${tid}`);
 
 export const getAllScorecardsInTournament = (id) => tournamentsApi.get(`/${id}/scorecards`);
+
 export const deleteCategoriesInTournament = (tid, pid) => tournamentsApi.delete(`/${tid}/categories/${pid}?tournamentId=${tid}`);
 
 export const addcategorieToTournament = (tid, categoryid) => tournamentsApi.post(`/${tid}/Categories?tournamentId=${tid}&categoryId=${categoryid}`);
+
+export const tournamentsForPlayer = (id) => playersApi.get(`/${id}/tournaments`);

@@ -25,7 +25,7 @@ import {
 } from "@nextui-org/react";
 import { TournamentsFormPage } from "./TournamentsFormPage";
 import { toast } from "react-hot-toast";
-import { TournamentandPLayer } from "./TournamentandPLayer";
+import { TournamentandPLayer } from "./TournamentAndPlayer";
 
 export function TournamentPage() {
   const [tournament, setTournament] = useState(null);
@@ -34,25 +34,20 @@ export function TournamentPage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const navigate = useNavigate();
   const params = useParams();
-
   const [size, setSize] = React.useState("md");
   const [backdrop, setBackdrop] = React.useState("opaque");
-
   const handleOpen = (size) => {
     setSize(size);
     onOpen();
   };
-
   const handleBackdropChange = (newBackdrop) => {
     setBackdrop(newBackdrop);
   };
-
   const [refetch, setRefetch] = React.useState(true);
 
   const handleRefetch = () => {
     setRefetch((prevRefetch) => !prevRefetch);
   };
-
   useEffect(() => {
     async function fetchTournament() {
       try {
@@ -62,7 +57,6 @@ export function TournamentPage() {
         console.error("Error fetching tournament:", error);
       }
     }
-
     async function fetchNumOfPlayers() {
       try {
         const response = await getAllPlayersInTournament(id);
@@ -71,7 +65,6 @@ export function TournamentPage() {
         console.error("Error fetching number of players:", error);
       }
     }
-
     fetchTournament();
     fetchNumOfPlayers();
   }, [id, refetch]);
@@ -154,8 +147,8 @@ export function TournamentPage() {
               </CardHeader>
               <Divider />
               <CardBody>
-               {/*  <PlayersListForTournament tournamentId={id} /> */}
-               <TournamentandPLayer />
+                {/*  <PlayersListForTournament tournamentId={id} /> */}
+                <TournamentandPLayer />
               </CardBody>
               <CardFooter>
                 {params.id && (

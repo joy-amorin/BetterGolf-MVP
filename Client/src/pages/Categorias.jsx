@@ -1,4 +1,3 @@
-// 
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import {
@@ -34,9 +33,7 @@ export function Categorias () {
           <p>{categoria.count}</p>
           </CardBody>
         </Card>
-        
       ))}
     </div>
   )
 }
-
