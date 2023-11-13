@@ -1,5 +1,4 @@
 import {  getAllTournamentCategories, deleteCategoriesInTournament, getAllScorecardsInTournament } from '../api/tournaments.api';
-
 import { DeleteIcon } from "../assets/DeleteIcon";
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
@@ -7,8 +6,6 @@ import { useEffect, useState } from 'react';
 import { Button } from '@nextui-org/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { set } from 'react-hook-form';
-
-
 
 export function TournamentCategories() {
 
@@ -32,9 +29,6 @@ export function TournamentCategories() {
     fetchcategories();
     }
   }, [refetch]);
-  
-
-
  
   return (
     <div>

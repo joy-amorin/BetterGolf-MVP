@@ -21,9 +21,6 @@ export function CategoryListForTournament( ) {
     loadCategory();
   }, [ ]);
 
-
-  
-
   return (
     <div className="flex flex-col gap-3">
       <Table
