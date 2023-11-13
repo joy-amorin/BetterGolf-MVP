@@ -37,7 +37,7 @@ services:
     networks:
       - better-golf-network
     volumes:
-      - ./Client:/app
+      - ./Client/src:/app/src
 
 networks:
   better-golf-network:
