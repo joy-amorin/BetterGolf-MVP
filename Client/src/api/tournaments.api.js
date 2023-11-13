@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const tournamentsApi = axios.create({
-	baseURL: 'http://localhost:5100/api/tournaments',
+	baseURL: 'http://localhost:5000/api/tournaments',
 });
 
 export const getAllTournaments = () => tournamentsApi.get('/');

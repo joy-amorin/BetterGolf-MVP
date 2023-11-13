@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const playersApi = axios.create({
-	baseURL: 'http://localhost:5100/api/players',
+	baseURL: 'http://localhost:5000/api/players',
 });
 
 export const getAllPlayers = () => playersApi.get('/');
