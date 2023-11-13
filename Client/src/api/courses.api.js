@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const courseApi = axios.create({
-	baseURL: 'http://localhost:5100/api/courses',
+	baseURL: 'http://localhost:5000/api/courses',
 });
 
 export const getAllCourses = () => courseApi.get('/');
