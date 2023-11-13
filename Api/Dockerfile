@@ -6,6 +6,6 @@ RUN dotnet tool install --global dotnet-ef
 
 ENV PATH="$PATH:/root/.dotnet/tools"
 
-EXPOSE 5000
+EXPOSE 5001
 
 CMD ["dotnet", "run"]

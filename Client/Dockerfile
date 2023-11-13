@@ -2,7 +2,7 @@ FROM node:20.9.0 as development
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
 
 RUN npm install
 

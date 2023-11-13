@@ -8,7 +8,7 @@ services:
       context: ./Api
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "5001:5001"
     depends_on:
       - database
     networks:
@@ -37,7 +37,7 @@ services:
     networks:
       - better-golf-network
     volumes:
-      - ./Client:/app
+      - ./Client/src:/app/src
 
 networks:
   better-golf-network:

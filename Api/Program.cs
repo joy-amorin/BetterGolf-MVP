@@ -10,7 +10,7 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        builder.Configuration["Urls"] = "http://*:5000";
+        builder.Configuration["Urls"] = "http://*:5001";
         builder.Services.AddDbContext<BgContext>(options => options.UseNpgsql("User ID=postgres;Password=2002;Host=database-dev;Port=5432;Database=Better-Golf;Pooling=true;Connection Lifetime=0;"));
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
