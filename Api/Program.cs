@@ -98,7 +98,7 @@ internal class Program
         //app.MapDelete("/api/Holes/{id}", Hole.DeleteHole);
 
         // Seccion Scorecard
-        //app.MapGet("/api/Scorecards", Scorecard.GetAllScorecards);
+        app.MapGet("/api/Scorecards/{tournamentId}", Scorecard.GetAllScorecards);
         //app.MapGet("/api/Scorecards/{id}", Scorecard.GetScorecard);
         //app.MapPost("/api/Scorecards", Scorecard.CreateScorecard);
         //app.MapPut("/api/Scorecards/{id}", Scorecard.UpdateScorecard);
