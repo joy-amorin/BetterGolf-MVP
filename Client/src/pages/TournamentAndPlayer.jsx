@@ -1,16 +1,13 @@
 import {  getAllPlayersInTournament, addPlayerToTournament, deletePlayerInTournament } from '../api/tournaments.api';
-
 import { DeleteIcon } from "../assets/DeleteIcon";
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
 import { Button } from '@nextui-org/react';
 import { useParams, useNavigate } from 'react-router-dom';
-/*  */
 
 
 export function TournamentandPLayer() {
-
   const [players, setPlayers] = useState([]);
   const [refetch, setRefetch] = useState(true);
   const params = useParams(); // para obtener el id de la url 

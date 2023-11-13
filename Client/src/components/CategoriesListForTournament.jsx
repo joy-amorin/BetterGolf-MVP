@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllCategory } from "../api/Categories.api";
+import { getAllCategory } from "../api/categories.api";
 import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, Tooltip, Button } from "@nextui-org/react";
 import { EditIcon } from "../assets/EditIcon";
 import { DeleteIcon } from "../assets/DeleteIcon";
