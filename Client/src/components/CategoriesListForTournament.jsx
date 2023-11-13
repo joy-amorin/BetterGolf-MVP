@@ -1,34 +1,25 @@
 import { useEffect, useState } from "react";
-import { getAllCategory } from "../api/categories.api";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableColumn,
-  TableRow,
-  TableCell,
-  Tooltip,
-  Button,
-} from "@nextui-org/react";
+import { getAllCategory } from "../api/Categories.api";
+import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, Tooltip, Button } from "@nextui-org/react";
 import { EditIcon } from "../assets/EditIcon";
 import { DeleteIcon } from "../assets/DeleteIcon";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { set } from "react-hook-form";
 import { addcategorieToTournament } from "../api/tournaments.api";
 
-export function CategoryListForTournament() {
+export function CategoryListForTournament( ) {
   const [Category, setCategory] = useState([]);
   const params = useParams(); // para obtener el id de la url
-  /*   const tournamentid = parseInt(params.id, 10) */
-  const navigate = useNavigate();
+/*   const tournamentid = parseInt(params.id, 10) */
+ const navigate = useNavigate();
   useEffect(() => {
     async function loadCategory() {
       const res = await getAllCategory();
       setCategory(res.data);
     }
     loadCategory();
-  }, []);
+  }, [ ]);
 
   return (
     <div className="flex flex-col gap-3">
@@ -63,14 +54,7 @@ export function CategoryListForTournament() {
           ))}
         </TableBody>
       </Table>
-      <Button
-        onClick={async () => {
-          navigate(`/tournaments/${params.id}/categories`);
-        }}
-      >
-        {" "}
-        Pushme
-      </Button>
+      <Button onClick={async () => {navigate(`/tournaments/${params.id}/categories`)}}> Pushme</Button>
     </div>
   );
 }

@@ -60,88 +60,54 @@ export function CoursesFormPage({ onclose, setRefetch }) {
   }, []);
 
   return (
-    <div className="max-w-xl mx-auto">
-      <form onSubmit={onSubmit}>
-        <div className="mb-3">
-          <Input
-            type="text"
-            label="Course name"
-            placeholder={errors.name ? "Required" : ""}
-            {...register("name", { required: true })}
-          />
-        </div>
-        <div className="mb-3">
-          <Input
-            type="number"
-            label="Course slope"
-            placeholder={errors.courseSlope ? "Required" : ""}
-            {...register("courseSlope", { required: true })}
-          />
-        </div>
-        <div className="mb-3">
-          <Input
-            type="number"
-            label="Course rating"
-            placeholder={errors.courseRating ? "Required" : ""}
-            {...register("courseRating", { required: true })}
-          />
-        </div>
-        <div className="flex justify-start mb-3">
-          <Button
-            color="primary"
-            type="submit"
-            onClick={() => {
-              if (!params.id) {
-                onclose();
-              } else {
-                setRefetch;
-              }
-            }}
-          >
-            Save
-          </Button>
-        </div>
-      </form>
-      {params.id && (
-        <div className="flex justify-end">
-          <Button
-            color="danger"
-            onClick={async () => {
-              const accepted = window.confirm("Confirm");
-              if (accepted) {
-                await deleteCourse(params.id);
-                toast.success("Course deleted"), navigate("/course");
-              }
-            }}
-          >
-            Delete
-          </Button>
-        </div>
-      )}
-      {params.id && (
-        <div className="flex justify-end">
-          <Button
-            color="danger"
-            onClick={async () => {
-              navigate(`/courses/${params.id}/holes`);
-            }}
-          >
-            ver todos los holes in course
-          </Button>
-        </div>
-      )}
-      {params.id && (
-        <div className="flex justify-end">
-          <Button
-            color="danger"
-            onClick={async () => {
-              navigate(`/courses/${params.id}/addcourses`);
-            }}
-          >
-            Agregar holes
-          </Button>
-        </div>
-      )}
+		<div className="max-w-xl mx-auto w-2/4">
+				<form onSubmit={onSubmit}>
+					<div className="mb-3">
+						<Input
+							type="text"
+							label="Course name"
+							placeholder={errors.name ? "Required" : ""}
+							{...register("name", { required: true })}
+						/>
+					</div>
+					<div className="mb-3">
+						<Input
+							type="number"
+							label="Course slope"
+							placeholder={errors.courseSlope ? "Required" : ""}
+							{...register("courseSlope", { required: true })}
+						/>
+					</div>
+					<div className="mb-3">
+						<Input
+							type="number"
+							label="Course rating"
+							placeholder={errors.courseRating ? "Required" : ""}
+							{...register("courseRating", { required: true })}
+						/>
+					</div>
+          <div className="flex justify-start mb-3">
+					<Button color="primary" type="submit" onClick={() => {if (!params.id){onclose()}else{ setRefetch}}}>
+						Save
+					</Button>
+      </div>
+			</form>
+  {params.id && (
+    <div className="flex justify-end">
+      <Button
+        color="danger"
+        onClick={async () => {
+          const accepted = window.confirm("Confirm");
+          if (accepted) {
+            await deleteCourse(params.id);
+            toast.success("Course deleted"), navigate("/course");
+          }
+        }}
+        >
+        Delete
+      </Button>
     </div>
-  );
+  )}
+</div>
+);
 }

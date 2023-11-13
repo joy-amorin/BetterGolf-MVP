@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCourseById } from "../api/courses.api";
-
-export function Co({ valor }) {
+export function Co({valor}) {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     async function loadCourses(valor) {

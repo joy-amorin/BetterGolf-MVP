@@ -54,13 +54,16 @@ export function TournamentCategoriesPage() {
 
   useEffect(() => {
     async function fetchTournament() {
-      const response = await getTournamentById(id);
-      setTournament(response.data);
+        const response = await getTournamentById(id);
+        setTournament(response.data);
+    
     }
 
     async function fetchNumOfPlayers() {
-      const response = await getAllTournamentCategories(id);
-      setNumOfPlayers(response.data.length);
+    
+        const response = await getAllTournamentCategories(id);
+        setNumOfPlayers(response.data.length);
+    
     }
 
     fetchTournament();
@@ -144,8 +147,8 @@ export function TournamentCategoriesPage() {
               </CardHeader>
               <Divider />
               <CardBody>
-                {/*  <PlayersListForTournament tournamentId={id} /> */}
-                <TournamentCategories />
+               {/*  <PlayersListForTournament tournamentId={id} /> */}
+               <TournamentCategories />
               </CardBody>
               <CardFooter>
                 {params.id && (
@@ -154,7 +157,7 @@ export function TournamentCategoriesPage() {
                       navigate(`/tournaments/${params.id}/addCategory`);
                     }}
                   >
-                    Add player
+                    Add Category
                   </Button>
                 )}
               </CardFooter>

@@ -1,4 +1,10 @@
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Image,
+  CardFooter,
+} from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import {
   Modal,
@@ -17,7 +23,12 @@ import { DeleteIcon } from "../assets/DeleteIcon";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { Co } from "../components/CourseById";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react'
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/react";
 
 export function CoursesPage() {
   // Usa useState para declarar el estado courses
@@ -26,20 +37,19 @@ export function CoursesPage() {
   const [refetch, setRefetch] = useState(true);
   // Usa useDisclosure para manejar el estado del modal
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  // Usa useEffect para cargar los cursos cuando el componente se monta
   const navigate = useNavigate();
   useEffect(() => {
     //  verificar si refetch es true
     async function loadCourses() {
       const res = await getAllCourses();
       setCourses(res.data);
-        setRefetch(false);
-      }
-      if (refetch) {
+      setRefetch(false);
+    }
+    if (refetch) {
       loadCourses();
     }
   }, [refetch]); // Mantiene refetch como dependencia
-  const cambiarValor = ( ) => {
+  const cambiarValor = () => {
     setRefetch(true); // Aquí cambiamos el valor del estado del padre a false
   };
 
@@ -62,7 +72,10 @@ export function CoursesPage() {
                   New Course
                 </ModalHeader>
                 <ModalBody>
-                  <CoursesFormPage onclose={onClose} setRefetch={cambiarValor} />
+                  <CoursesFormPage
+                    onclose={onClose}
+                    setRefetch={cambiarValor}
+                  />
                 </ModalBody>
                 <ModalFooter></ModalFooter>
               </>
@@ -70,46 +83,70 @@ export function CoursesPage() {
           </ModalContent>
         </Modal>
       </div>
-      <div className="flex flex-wrap gap-4 mt-10 w-2/4  bg-y-hidden ">
+      <div className="flex flex-wrap gap-4 mt-10 w-100%  ">
         {courses.map((course) => (
-          <Card className="py-1 w-5/6 ml-11 bg-gradient-to-r from-green-500 to-blue-500 bg-opacity-10" key={course.id}
+          <Card
+            className="py-1 w-40% mb-10 ml-11 bg-gradient-to-b from-blue-700 via-blue-800 to-gray-900"
+            key={course.id}
           >
-            <CardHeader onClick={ async () => {navigate(`/courses/${course.id}/`)}} className="pb-1 pt-0 px-2 display-flex flex-row border-b border-2 border-gray-300">
-              <p className="text-tiny uppercase font-bold">{course.id}</p>
-              <small className="text-2xl text-black-500">{course.name}</small>
-              <h4 className="font-bold text-large">{course.courseSlope}</h4>
+            <CardHeader
+              onClick={async () => {
+                navigate(`/courses/${course.id}/`);
+              }}
+              className="pb-1 pt-0 px-2 display-flex flex-row border-b border-1"
+            >
+              <p className="text-2xl text-black-500 text-center">
+                {course.name}{" "}
+              </p>
             </CardHeader>
             <CardBody className="overflow-visible py-2">
-              <div className="flex items-center justify-between px-4">
-                <div className="flex items-center gap-2">
-                  <div className="relative flex items-center gap-2">
-                    <Tooltip content="Edit">
-                      <Link to={`/courses/${course.id}`}>
-                        <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                          <EditIcon />
-                        </span>
-                      </Link>
-                    </Tooltip>
-                    <Tooltip color="danger" content="Delete">
-                      <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                        <DeleteIcon
-                          onClick={async () => {
-                            const accepted = window.confirm("Confirm");
-                            if (accepted) {
-                              await deleteCourse(course.id);
-                              setRefetch(!refetch);
-                              let updatedcourses = courses.filter(
-                                (course) => course.id !== course.id
-                              );
-                              setCourses(updatedcourses);
-                              toast.success("course deleted");
-                            }
-                          }}
-                        />
+              <div className="flex items-center justify-between px-2">
+                <p>Aca se pueden poner varias cosas </p>
+              </div>
+            </CardBody>
+            <CardFooter>
+              <div className="flex justify-between items-center gap-10">
+                <div className="flex gap-2 ">
+                  <Tooltip content="Edit">
+                    <Link to={`/courses/${course.id}`}>
+                      <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                        <EditIcon />
                       </span>
-                    </Tooltip>
-                  </div>
-                 
+                    </Link>
+                  </Tooltip>
+                  <Tooltip color="danger" content="Delete">
+                    <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                      <DeleteIcon
+                        onClick={async () => {
+                          const accepted = window.confirm("Confirm");
+                          if (accepted) {
+                            await deleteCourse(course.id);
+                            setRefetch(!refetch);
+                            let updatedcourses = courses.filter(
+                              (course) => course.id !== course.id
+                            );
+                            setCourses(updatedcourses);
+                            toast.success("course deleted");
+                          }
+                        }}
+                      />
+                    </span>
+                  </Tooltip>
+                </div>
+                <div className="flex items-end ">
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button variant="shadow" color="warning">
+                        Detalles
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Static Actions">
+                      <DropdownItem key="new">
+                        {" "}
+                        <Co valor={course.id} />
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </div>
                 <Dropdown>
       <DropdownTrigger>
@@ -125,7 +162,7 @@ export function CoursesPage() {
       </DropdownMenu>
     </Dropdown>
               </div>
-            </CardBody>
+            </CardFooter>
           </Card>
         ))}
       </div>

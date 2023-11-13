@@ -24,4 +24,8 @@ export const deletePlayerInTournament = (tid, pid) => tournamentsApi.delete(`/${
 
 export const getAllScorecardsInTournament = (id) => tournamentsApi.get(`/${id}/scorecards`);
 
+export const deleteCategoriesInTournament = (tid, pid) => tournamentsApi.delete(`/${tid}/categories/${pid}?tournamentId=${tid}`);
+
+export const addcategorieToTournament = (tid, categoryid) => tournamentsApi.post(`/${tid}/Categories?tournamentId=${tid}&categoryId=${categoryid}`);
+
 export const tournamentsForPlayer = (id) => playersApi.get(`/${id}/tournaments`);

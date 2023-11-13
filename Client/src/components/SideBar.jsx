@@ -12,15 +12,15 @@ import { CoursesIcon } from "../assets/CoursesIcon";
 export function SideBar() {
   const navigate = useNavigate();
   return (
-    <div className="flex">
+    <div className="flex bg-gradient-to-b from-gray-700 via-gray-900 to-black rounded-md ">
       <Listbox
         aria-label="SideBar"
-        className="h-screen p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 max-w-[300px] overflow-visible shadow-md dark:shadow-gray-800"
+        className="h-screen pl-2 pb-6 pt-2 gap-2 divide-y divide-default-300/50 dark:divide-default-100/80 max-w-[220px] overflow-visible shadow-sm dark:shadow-gray-800"
         itemClasses={{
           base: "px-3 rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
         }}
       >
-        <ListboxItem
+        <ListboxItem 
           onClick={() => {
             navigate("/tournaments");
           }}
@@ -28,7 +28,7 @@ export function SideBar() {
           /* endContent={<ItemCounter number={13} />} */
           startContent={
             <IconWrapper className="bg-success/10 text-success">
-              <TrophyIcon className="text-lg " />
+              <TrophyIcon className=" text-xs  sm:text-lg" />
             </IconWrapper>
           }
         >
@@ -42,7 +42,7 @@ export function SideBar() {
           /* endContent={<ItemCounter number={13} />} */
           startContent={
             <IconWrapper className="bg-success/10 text-success">
-              <UserIcon className="text-lg " />
+              <UserIcon className="text-xs  sm:text-lg " />
             </IconWrapper>
           }
         >
@@ -56,7 +56,7 @@ export function SideBar() {
           /* endContent={<ItemCounter number={13} />} */
           startContent={
             <IconWrapper className="bg-success/10 text-success">
-              <CoursesIcon className="text-lg " />
+              <CoursesIcon className="text-xs  sm:text-lg" />
             </IconWrapper>
           }
         >

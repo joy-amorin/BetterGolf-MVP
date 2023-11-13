@@ -28,13 +28,10 @@ export function TournamentandPLayer() {
     fetchPlayers();
     }
   }, [refetch]);
-  
-
-
  
   return (
     <div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 ">
       <Table
         color={"primary"}
         selectionMode="single"

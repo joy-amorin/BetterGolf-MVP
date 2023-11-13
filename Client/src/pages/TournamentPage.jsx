@@ -74,7 +74,8 @@ export function TournamentPage() {
       <div>
         {tournament ? (
           <div>
-            <Card>
+            <Card className="bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 opacity-80 dark:bg-gradient-to-r dark:from-gray-700 dark:via-gray-900 dark:to-black">
+           
               <CardHeader>
                 <h1 className="text-3xl font-bold">{tournament.name}</h1>
               </CardHeader>

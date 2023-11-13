@@ -5,7 +5,6 @@ import {
   deleteCourse,
   getHolesInCourses,
 } from "../api/courses.api";
-
 import {
   Card,
   CardHeader,
@@ -89,20 +88,20 @@ export function CoursePageId() {
               <Divider />
               <CardBody>
                 <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
-                  Slope : {course.courseSlope}
+                 Slope :  { course.courseSlope}
                 </p>
                 <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
-                  Rating : {course.courseRating}
+                 Rating :  {course.courseRating}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300">
-                  Par : {course.par}
+                 Par :  {course.par}
                 </p>
               </CardBody>
               <CardFooter className="flex justify-between">
                 <Button onPress={() => handleOpen("")}>
                   Edit info
                   <Modal
-                    size={"2xl"}
+                    size={"1xl"}
                     backdrop={"blur"}
                     isOpen={isOpen}
                     onOpenChange={onOpenChange}
@@ -111,7 +110,7 @@ export function CoursePageId() {
                     <ModalContent>
                       {(onClose) => (
                         <>
-                          <ModalHeader className="flex flex-col gap-1"></ModalHeader>
+                          <ModalHeader className="flex flex-col gap-1"> Course</ModalHeader>
                           <ModalBody>
                             <CoursesFormPage
                               onClose={onClose}
@@ -145,16 +144,16 @@ export function CoursePageId() {
               <CardHeader>
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
-                    ? `No players on ${course.name}`
-                    : `${numOfPlayers} Player${
+                    ? `No Holes on ${course.name}`
+                    : `${numOfPlayers} Hole${
                         numOfPlayers === 1 ? "" : "s"
                       } on ${course.name}`}
                 </h1>
               </CardHeader>
               <Divider />
-              <CardBody>
-                {/*  <PlayersListForCourse CourseId={id} /> */}
-                <CoursesAndHole />
+              <CardBody className="overflow-auto">
+               {/*  <PlayersListForCourse CourseId={id} /> */}
+               <CoursesAndHole />
               </CardBody>
               <CardFooter>
                 {params.id && (

@@ -14,4 +14,6 @@ export const deletePlayer = (id) => playersApi.delete(`/${id}`);
 
 export const updatePlayer = (id, player) => playersApi.put(`/${id}`, player);
 
+export const Tournamentsforplayer = (id) => playersApi.get(`/${id}/Tournaments`);
+
 export const tournamentsForPlayer = (id) => playersApi.get(`/${id}/tournaments`);
