@@ -12,6 +12,7 @@ public class ScorecardResult
     public int Strokes { get; set; }
     public int RoundNumber { get; set; }
     public Hole Hole { get; set; } = null!;
+    public int HoleId { get; set; }
     public Scorecard Scorecard { get; set; }
     public int ScorecardId { get; set; }
 
@@ -92,4 +93,3 @@ public class ScorecardResult
         return Results.NoContent();
     }
 }
-
