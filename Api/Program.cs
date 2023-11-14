@@ -105,9 +105,9 @@ internal class Program
         app.MapDelete("/api/Scorecards/{id}", Scorecard.DeleteScorecard);
 
         // Seccion ScorecardResult
-        app.MapGet("/api/ScorecardResults/{id}", ScorecardResult.GetScorecardResult);
-        app.MapPut("/api/ScorecardResults/{id}", ScorecardResult.UpdateScorecardResult);
-        app.MapDelete("/api/ScorecardResults/{id}", ScorecardResult.DeleteScorecardResult);
+        app.MapGet("/api/ScorecardResults/{scorecardId}/{holeId}", ScorecardResult.GetScorecardResult);
+        app.MapPut("/api/ScorecardResults/{scorecardId}/{holeId}", ScorecardResult.UpdateScorecardResult);
+        //app.MapDelete("/api/ScorecardResults/{id}", ScorecardResult.DeleteScorecardResult);
 
         // Seccion Results
         app.MapGet("/api/TournamentRankings/{tournamentId}", Result.GetTournamentRanking);
