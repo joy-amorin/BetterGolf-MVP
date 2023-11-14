@@ -38,6 +38,16 @@ public class Scorecard
     {
         return Id.GetHashCode();
     }
+    public static async Task<IResult> GetAllScorecards(BgContext db, int tournamentId)
+    {
+        await Result.GenerateTournamentRanking(db, tournamentId);
+
+        // Obtiene todos los marcadores para el torneo especificado por tournamentId
+        var scorecards = await db.Scorecards.Where(x => x.TournamentId == tournamentId)
+            .Select(x => new ScorecardListGetDTO(x)).ToArrayAsync();
+
+        return Results.Ok(scorecards);
+    }
     public static async Task<IResult> GetScorecard(int id, BgContext db)
     {
         var scorecard = await db.Scorecards.FindAsync(id);
