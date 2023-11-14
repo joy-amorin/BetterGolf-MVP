@@ -110,13 +110,8 @@ internal class Program
         app.MapDelete("/api/ScorecardResults/{id}", ScorecardResult.DeleteScorecardResult);
 
         // Seccion Results
-        /*
-        app.MapGet("/api/Results", Result.GetAllResults);
-        app.MapGet("/api/Results/{id}", Result.GetResult);
-        app.MapPost("/api/Results", Result.CreateResult);
-        app.MapPut("/api/Results/{id}", Result.UpdateResult);
-        app.MapDelete("/api/Results/{id}", Result.DeleteResult);
-        */
+        app.MapGet("/api/TournamentRankings/{tournamentId}", Result.GetTournamentRanking);
+
 
         // Seccion RoundsInfo
         /*

@@ -42,5 +42,10 @@ namespace GolfApi.Models
 
             return Results.Ok();
         }
+        public static List<TournamentRanking> GetTournamentRanking(BgContext db, int tournamentId)
+        {
+            return db.TournamentRankings.Where(ranking => ranking.TournamentId == tournamentId)
+            .OrderBy(r => r.TotalStrokes).ToList();
+        }
     }
 }
