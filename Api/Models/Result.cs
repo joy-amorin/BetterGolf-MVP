@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using GolfApi.Data;
-using GolfApi.Models.DTOs.ScorecardDTOs;
-using GolfApi.Models.Engine;
+using Api.Data;
+using Api.Models.DTOs.ScorecardDTOs;
+using Api.Models.Engine;
 
-namespace GolfApi.Models
+namespace Api.Models
 {
     public class Result
     {
