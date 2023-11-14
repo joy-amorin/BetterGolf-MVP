@@ -14,7 +14,6 @@ namespace Api.Data
         public DbSet<Result> Results { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<RoundInfo> RoundInfos { get; set; }
-        public DbSet<Default> Defaults { get; set; }
         public DbSet<Result.TournamentRanking> TournamentRankings { get; set; }
         public BgContext(DbContextOptions<BgContext> options)
             : base(options)
