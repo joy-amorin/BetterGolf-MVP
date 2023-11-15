@@ -93,7 +93,7 @@ export function TournamentPage() {
                 </p>
               </CardBody>
               <CardFooter className="flex justify-between">
-                <Button onPress={() => handleOpen("")}>
+                <Button onPress={() => handleOpen("")} className="bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400">
                   Edit info
                   <Modal
                     size={"2xl"}
@@ -155,7 +155,7 @@ export function TournamentPage() {
                   <Button
                     onClick={() => {
                       navigate(`/tournaments/${params.id}/addplayers`);
-                    }}
+                    }} className="bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400"
                   >
                     Add player
                   </Button>

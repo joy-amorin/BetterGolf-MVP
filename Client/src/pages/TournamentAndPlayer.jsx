@@ -18,15 +18,15 @@ export function TournamentandPLayer() {
      
       const players = await getAllPlayersInTournament(params.id);
       const result = await  getAllScorecardsInTournament(params.id)
+      console.log(result)
       const playersresult = players.data.map(player => {
-        const results = result.data.find(results => result.id === players.id);
-        if (result) {
-          return {...player, totalStrokes: results.totalStrokes}
+        for (let i = 0; i < result.data.length; i++) {
+          const element = result.data[i];
+          if (element.player === player.id) {
+            return {...player, totalStrokes: element.totalStrokes, sId: element.id}
+          }
         }
-        else
-        {
-          return players;
-        }
+        return {...player, totalStrokes: 0, sId: 0}
       })
       setPlayers(playersresult);
       setRefetch(false);
@@ -82,11 +82,11 @@ export function TournamentandPLayer() {
               <TableCell>
                 <div className="relative flex items-center gap-2">
                
-                  <Tooltip color="danger" content="Delete">
+                  <Tooltip color="warning" content="Delete">
                     <span className="text-lg text-danger cursor-pointer active:opacity-50">
                       <DeleteIcon
                         onClick={async () => {
-                          navigate(`/tournaments/${params.id}/result/${player.id}`);
+                          navigate(`/tournaments/${params.id}/result/${player.sId}`);
                         }}
                       />
                     </span>

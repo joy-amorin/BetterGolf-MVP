@@ -26,9 +26,10 @@ export function HolesForScorecards({ onclose, setRefetch }) {
       // Crear un arreglo de promesas con los fetch de cada stroke
       const promises = Array.from({ length: 9 }).map((_, i) => {
         // Construir la url con el número de stroke y la cantidad
-        const url = `http://localhost:5001/api/ScorecardResults/${i + 1}/${data[`strokes${i + 1}`]}`;
+        const url = `http://localhost:5001/api/ScorecardResults/${params.scoreId}/${i + 1}`;
         // Enviar los datos con fetch y devolver la promesa
-        return fetch(url, { method: "Put", body: JSON.stringify(data) });
+        console.log(url);
+        return fetch(url, { method: "Put", body: JSON.stringify({strokes:data[`strokes${i + 1}`]}), headers: { "Content-Type": "application/json" } });
       });
       
       await Promise.all(promises);
@@ -56,10 +57,10 @@ export function HolesForScorecards({ onclose, setRefetch }) {
   }, []);
 
   return (
-    <div class="max-w-xl mx-auto grid grid-cols-6 hv-1/2">
+    <div className="max-w-xl mx-auto grid grid-cols-6 hv-1/2">
     <form onSubmit={onSubmit}>
          {Array.from({ length: 9 }).map((_, i) => (
-           <div class="p-2 border flex-1" key={i}>
+           <div className="p-2 border flex-1" key={i}>
              <Input
                type="number"
                label={`stroke${i + 1}`}
@@ -69,7 +70,7 @@ export function HolesForScorecards({ onclose, setRefetch }) {
         </div>
       ))}
   
-      <div class="flex justify-center col-span-6 mt-4">
+      <div className="flex justify-center col-span-6 mt-4">
         <Button color="primary" type="submit">
           Save
         </Button>
