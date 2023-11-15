@@ -15,7 +15,7 @@ export function TournamentsList({ refetch }) {
   }, [refetch]);
 
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="flex flex-wrap gap-3">
       {tournaments.map((tournament) => (
         <TournamentCard key={tournament.id} tournament={tournament} />
       ))}

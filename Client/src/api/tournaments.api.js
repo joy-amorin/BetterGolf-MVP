@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const tournamentsApi = axios.create({
-	baseURL: 'http://localhost:5001/api/tournaments',
+	baseURL: 'http://localhost:5001/api/Tournaments',
 });
 
 export const getAllTournaments = () => tournamentsApi.get('/');
@@ -22,7 +22,7 @@ export const getAllPlayersInTournament = (id) => tournamentsApi.get(`/${id}/play
 
 export const deletePlayerInTournament = (tid, pid) => tournamentsApi.delete(`/${tid}/players/${pid}?tournamentId=${tid}`);
 
-export const getAllScorecardsInTournament = (id) => tournamentsApi.get(`/${id}/scorecards`);
+export const getAllScorecardsInTournament = (id) => tournamentsApi.get(`/${id}/Scorecards`);
 
 export const deleteCategoriesInTournament = (tid, pid) => tournamentsApi.delete(`/${tid}/categories/${pid}?tournamentId=${tid}`);
 

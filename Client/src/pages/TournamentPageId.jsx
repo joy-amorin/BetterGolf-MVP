@@ -71,21 +71,21 @@ export function TournamentPage() {
 
   return (
     <>
-      <div>
+      <div className="w-3/4 ml-32">
         {tournament ? (
           <div>
-            <Card className="bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 opacity-80 dark:bg-gradient-to-r dark:from-gray-700 dark:via-gray-900 dark:to-black">
+            <Card className="bg-zinc-800 dark:bg-zinc-900 mt-12">
            
-              <CardHeader>
+              <CardHeader className="bg-zinc-700">
                 <h1 className="text-3xl font-bold">{tournament.name}</h1>
               </CardHeader>
               <Divider />
               <CardBody>
-                <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
+                <p className="mb-3 text-gray-700 dark:text-gray-500 text-tiny uppercase font-bold text-end">
                   {new Date(tournament.startDate).toLocaleDateString()} -{" "}
                   {new Date(tournament.endDate).toLocaleDateString()}
                 </p>
-                <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
+                <p className="mb-3 text-gray-700 dark:text-gray-500 text-tiny uppercase font-bold">
                   {tournament.tournamentType}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300">
@@ -124,7 +124,8 @@ export function TournamentPage() {
                       "Are you sure you want to delete this tournament?"
                     );
                     if (accepted) {
-                      await deleteTournament(id);
+                     const suceso = await deleteTournament(params.id);
+                  
                       toast.success("Tournament deleted");
                       navigate("/tournaments");
                     }
@@ -135,8 +136,8 @@ export function TournamentPage() {
               </CardFooter>
             </Card>
             <Divider className="my-3" />
-            <Card>
-              <CardHeader>
+            <Card className="mt-12">
+              <CardHeader className="bg-zinc-700">
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
                     ? `No players on ${tournament.name}`
@@ -147,7 +148,6 @@ export function TournamentPage() {
               </CardHeader>
               <Divider />
               <CardBody>
-                {/*  <PlayersListForTournament tournamentId={id} /> */}
                 <TournamentandPLayer />
               </CardBody>
               <CardFooter>
@@ -162,6 +162,7 @@ export function TournamentPage() {
                 )}
               </CardFooter>
             </Card>
+            <Button onClick={() => navigate("categories")}>Tournament-Categories</Button>
           </div>
         ) : (
           <p>Loading tournament information...</p>

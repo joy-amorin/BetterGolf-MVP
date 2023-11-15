@@ -1,4 +1,4 @@
-import {  getAllPlayersInTournament, addPlayerToTournament, deletePlayerInTournament } from '../api/tournaments.api';
+import {  getAllPlayersInTournament, getAllScorecardsInTournament, deletePlayerInTournament } from '../api/tournaments.api';
 import { DeleteIcon } from "../assets/DeleteIcon";
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
@@ -15,12 +15,23 @@ export function TournamentandPLayer() {
 
   useEffect(() => {
     async function fetchPlayers() {
-      if (params.id) {
+     
       const players = await getAllPlayersInTournament(params.id);
-      setPlayers(players.data);
+      const result = await  getAllScorecardsInTournament(params.id)
+      const playersresult = players.data.map(player => {
+        const results = result.data.find(results => result.id === players.id);
+        if (result) {
+          return {...player, totalStrokes: results.totalStrokes}
+        }
+        else
+        {
+          return players;
+        }
+      })
+      setPlayers(playersresult);
       setRefetch(false);
       }
-    }
+    
     if (refetch){
     fetchPlayers();
     }
@@ -40,7 +51,9 @@ export function TournamentandPLayer() {
           <TableColumn>Name</TableColumn>
           <TableColumn>Last Name</TableColumn>
           <TableColumn>Handicap Index</TableColumn>
+          <TableColumn>Total Strokes</TableColumn>
           <TableColumn>Actions</TableColumn>
+          <TableColumn>Results</TableColumn>
         </TableHeader>
         <TableBody>
             {players.map((player) => (
@@ -49,22 +62,31 @@ export function TournamentandPLayer() {
               <TableCell>{player.name}</TableCell>
               <TableCell>{player.lastName}</TableCell>
               <TableCell>{player.handicapIndex}</TableCell>
+              <TableCell>{player.totalStrokes}</TableCell>
+              
               <TableCell>
                 <div className="relative flex items-center gap-2">
-                {/* <Tooltip content='Edit' color="foreground"> 
-                <span  className="text-lg text-danger cursor-pointer active:opacity-50"> 
-                <EditIcon
-                onClick={async () => 
-                { await addPlayerToTournament(player.id); setRefetch(!refetch); }} 
-                /> 
-                </span> 
-                </Tooltip> */}
+               
                   <Tooltip color="danger" content="Delete">
                     <span className="text-lg text-danger cursor-pointer active:opacity-50">
                       <DeleteIcon
                         onClick={async () => {
                           await deletePlayerInTournament(params.id, player.id);
                          setRefetch(true);
+                        }}
+                      />
+                    </span>
+                  </Tooltip>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="relative flex items-center gap-2">
+               
+                  <Tooltip color="danger" content="Delete">
+                    <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                      <DeleteIcon
+                        onClick={async () => {
+                          navigate(`/tournaments/${params.id}/result/${player.id}`);
                         }}
                       />
                     </span>

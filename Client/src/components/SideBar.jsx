@@ -12,10 +12,10 @@ import { CoursesIcon } from "../assets/CoursesIcon";
 export function SideBar() {
   const navigate = useNavigate();
   return (
-    <div className="flex bg-gradient-to-b from-gray-700 via-gray-900 to-black rounded-md ">
+    <div className="flex bg-zinc-900 text-slate-200 rounded-md  ">
       <Listbox
         aria-label="SideBar"
-        className="h-screen pl-2 pb-6 pt-2 gap-2 divide-y divide-default-300/50 dark:divide-default-100/80 max-w-[220px] overflow-visible shadow-sm dark:shadow-gray-800"
+        className="h-screen pl-2 pb-6 pt-2 gap-2 divide-y divide-default-300/50 dark:divide-default-100/80 max-w-[400px] overflow-visible shadow-sm dark:shadow-gray-800"
         itemClasses={{
           base: "px-3 rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
         }}

@@ -72,20 +72,20 @@ export function TournamentCategoriesPage() {
 
   return (
     <>
-      <div>
+      <div className="w-3/4 ml-32">
         {tournament ? (
           <div>
-            <Card>
-              <CardHeader>
+            <Card className="bg-zinc-800 dark:bg-zinc-900 mt-12">
+              <CardHeader className="bg-zinc-700">
                 <h1 className="text-3xl font-bold">{tournament.name}</h1>
               </CardHeader>
               <Divider />
               <CardBody>
-                <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
+                <p className="mb-3 text-gray-700 dark:text-gray-500 text-tiny uppercase font-bold text-end">
                   {new Date(tournament.startDate).toLocaleDateString()} -{" "}
                   {new Date(tournament.endDate).toLocaleDateString()}
                 </p>
-                <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
+                <p className="mb-3 text-gray-700 dark:text-gray-500 text-tiny uppercase font-bold">
                   {tournament.tournamentType}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300">
@@ -135,8 +135,8 @@ export function TournamentCategoriesPage() {
               </CardFooter>
             </Card>
             <Divider className="my-3" />
-            <Card>
-              <CardHeader>
+            <Card className="bg-zinc-800 dark:bg-zinc-900 mt-12">
+              <CardHeader className="bg-zinc-700">
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
                     ? `No Categories on ${tournament.name}`

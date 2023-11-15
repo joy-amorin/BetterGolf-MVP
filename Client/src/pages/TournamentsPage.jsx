@@ -49,7 +49,7 @@ export function TournamentsPage() {
 
   return (
     <div>
-      <Button onPress={onOpen}>
+      <Button onPress={onOpen} className="bg-purple-800 text-zinc-300">
         Create Tournament
         <Modal
           isOpen={isOpen}
