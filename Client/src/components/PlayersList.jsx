@@ -63,7 +63,7 @@ export function PlayersList({ refetch, setRefetch }) {
               <TableCell>{player.handicapIndex}</TableCell>
 
               <TableCell>
-                <div className="relative flex items-center gap-2">
+                <div className="relative flex items-center gap-6">
                   <Tooltip content="Edit">
                     <Link to={`/players/${player.id}`}>
                       <span className="text-lg text-default-400 cursor-pointer active:opacity-50">

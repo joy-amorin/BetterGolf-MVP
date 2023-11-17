@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   createTournament,
-  deleteTournament,
   updateTournament,
   getTournamentById,
 } from "../api/tournaments.api";
@@ -12,9 +11,6 @@ import {
   Input,
   Textarea,
   Button,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Divider,
 } from "@nextui-org/react";
 
@@ -25,7 +21,6 @@ export function TournamentsFormPage({ onClose, setRefetch }) {
     formState: { errors },
     setValue,
   } = useForm();
-  const navigate = useNavigate();
   const params = useParams();
 
   const onSubmit = handleSubmit(async (data) => {
@@ -101,7 +96,7 @@ export function TournamentsFormPage({ onClose, setRefetch }) {
             {...register("endDate", { required: false })}
           />
         </div>
-        <div className="flex justify-between mb-2">
+        <div className="flex justify-between mb-2 mt-4">
           <Button color="primary" type="submit" onClick={onClose}>
             Save
           </Button>

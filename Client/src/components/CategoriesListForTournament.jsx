@@ -65,7 +65,14 @@ return (
         ))}
       </TableBody>
     </Table>
-    <Button onClick={async () => {navigate(`/tournaments/${params.id}/categories`)}}> Pushme</Button>
+    
+    <Button
+      variant="shadow"
+      color="success"
+      onClick={async () => {navigate(`/tournaments/${params.id}/categories`)}} 
+       className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake" >
+         Go Back
+         </Button>
   </div>
 );
 

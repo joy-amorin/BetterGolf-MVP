@@ -68,13 +68,29 @@ export function TournamentPage() {
     fetchTournament();
     fetchNumOfPlayers();
   }, [id, refetch]);
-
+  
   return (
     <>
       <div className="w-3/4 ml-32">
+        <div>
+
+        <div className="flex items-start justify-start w-1/3">
+
+    <Button onClick={() => navigate("categories")} className="bg-amber-950">Tournament-Categories</Button>
+    </div>
+    <div className=" flex justify-end items-start"> 
+    <Button
+      variant="shadow"
+      color="success"
+      onClick={async () => {navigate(`/tournaments`)}} 
+      className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake  " >
+         Go Back
+         </Button>
+         </div>
+        </div>
         {tournament ? (
           <div>
-            <Card className="bg-zinc-800 dark:bg-zinc-900 mt-12">
+            <Card className="bg-zinc-800 dark:bg-zinc-900 mt-7">
            
               <CardHeader className="bg-zinc-700">
                 <h1 className="text-3xl font-bold">{tournament.name}</h1>
@@ -88,7 +104,7 @@ export function TournamentPage() {
                 <p className="mb-3 text-gray-700 dark:text-gray-500 text-tiny uppercase font-bold">
                   {tournament.tournamentType}
                 </p>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-400 ">
                   {tournament.description}
                 </p>
               </CardBody>
@@ -134,9 +150,10 @@ export function TournamentPage() {
                   Delete tournament
                 </Button>
               </CardFooter>
+                  
             </Card>
             <Divider className="my-3" />
-            <Card className="mt-12">
+            <Card  className="bg-zinc-800 dark:bg-zinc-900 mt-7">
               <CardHeader className="bg-zinc-700">
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
@@ -162,7 +179,6 @@ export function TournamentPage() {
                 )}
               </CardFooter>
             </Card>
-            <Button onClick={() => navigate("categories")}>Tournament-Categories</Button>
           </div>
         ) : (
           <p>Loading tournament information...</p>

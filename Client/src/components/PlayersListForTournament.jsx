@@ -25,7 +25,7 @@ export function PlayersListForTournament( ) {
   
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 w-3/4 ml-20">
       <Table
         color={"primary"}
         selectionMode="single"
@@ -35,12 +35,14 @@ export function PlayersListForTournament( ) {
         <TableHeader>
           <TableColumn>MatriculaAUG</TableColumn>
           <TableColumn>Name</TableColumn>
+          <TableColumn>Last Name</TableColumn>
          
           <TableColumn>Actions</TableColumn>
         </TableHeader>
         <TableBody>
             {players.map((player) => (
             <TableRow key={player.id}>
+              <TableCell>{player.matriculaAUG}</TableCell>
               <TableCell>{player.name}</TableCell>
               <TableCell>{player.lastName}</TableCell>
               <TableCell>
@@ -63,7 +65,10 @@ export function PlayersListForTournament( ) {
           ))}
         </TableBody>
       </Table>
-      <Button onClick={async () => {navigate(`/tournaments`)}}> Pushme</Button>
+      <Button
+      variant="shadow"
+      color="success"
+       onClick={async () => {navigate(`/tournaments/${params.id}`)}} className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake" > Go Back</Button>
     </div>
   );
 }
