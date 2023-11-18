@@ -2,7 +2,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Image,
   CardFooter,
 } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";

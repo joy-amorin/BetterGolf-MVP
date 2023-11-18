@@ -5,28 +5,25 @@ import {
   getAllPlayersInTournament,
   deleteTournament,
 } from "../api/tournaments.api";
-import { PlayersListForTournament } from "../components/PlayersListForTournament";
 import {
   Card,
   CardHeader,
   CardBody,
   CardFooter,
   Divider,
-  Link,
 } from "@nextui-org/react";
 import {
   Modal,
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Button,
   useDisclosure,
 } from "@nextui-org/react";
 import { TournamentsFormPage } from "./TournamentsFormPage";
 import { toast } from "react-hot-toast";
 import { TournamentandPLayer } from "./TournamentAndPlayer";
-
+import { TournamentResult } from "../components/TournamentResult";
 export function TournamentPage() {
   const [tournament, setTournament] = useState(null);
   const [numOfPlayers, setNumOfPlayers] = useState(null);
@@ -36,6 +33,7 @@ export function TournamentPage() {
   const params = useParams();
   const [size, setSize] = React.useState("md");
   const [backdrop, setBackdrop] = React.useState("opaque");
+  const currentDate = new Date();
   const handleOpen = (size) => {
     setSize(size);
     onOpen();
@@ -44,7 +42,7 @@ export function TournamentPage() {
     setBackdrop(newBackdrop);
   };
   const [refetch, setRefetch] = React.useState(true);
-
+  
   const handleRefetch = () => {
     setRefetch((prevRefetch) => !prevRefetch);
   };
@@ -76,7 +74,10 @@ export function TournamentPage() {
 
         <div className="flex items-start justify-start w-1/3">
 
-    <Button onClick={() => navigate("categories")} className="bg-amber-950">Tournament-Categories</Button>
+    <Button 
+    variant="shadow"
+    color="default"
+    onClick={() => navigate("categories")} className="bg-amber-950">Tournament-Categories</Button>
     </div>
     <div className=" flex justify-end items-start"> 
     <Button
@@ -104,9 +105,21 @@ export function TournamentPage() {
                 <p className="mb-3 text-gray-700 dark:text-gray-500 text-tiny uppercase font-bold">
                   {tournament.tournamentType}
                 </p>
-                <p className="text-gray-400 ">
-                  {tournament.description}
-                </p>
+
+<div>
+    {(new Date(tournament.endDate) < currentDate) ? (
+      <div>
+      <p className="text-gray-400 text-center"> Tournament finished</p>
+      <TournamentResult prueba={tournament.id} />
+      <p className="text-gray-400 text-center"> {tournament.description}</p>
+     </div>
+    ) : (
+      <p className=" text-xs sm:text-md text-center  text-slate-400 line-clamp-3" >
+        {tournament.description}
+      </p>
+    )}
+  </div>
+
               </CardBody>
               <CardFooter className="flex justify-between">
                 <Button onPress={() => handleOpen("")} className="bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400">

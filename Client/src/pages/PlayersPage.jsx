@@ -5,7 +5,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
 import { PlayersFormPage } from "./PlayersFormPage";
@@ -16,7 +15,7 @@ export function PlayersPage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <div>
-      <Button onPress={onOpen} color="primary" className="mb-3">
+      <Button onPress={onOpen}  className="mb-3 bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400">
         Add Player
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>

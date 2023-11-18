@@ -57,9 +57,13 @@ export function HolesForScorecards({ onclose, setRefetch }) {
   }, []);
 
   return (
-    <div className="max-w-xl mx-auto grid grid-cols-6 hv-1/2">
+    <div className="flex flex-col items-center justify-center h-screen">
+    <h1 className="text-2xl font-bold">Scorecard</h1>
+    <br/>
+    
     <form onSubmit={onSubmit}>
-         {Array.from({ length: 9 }).map((_, i) => (
+    <div className=" overflow-y-auto h-80 gap-4">
+         {Array.from({ length: 18 }).map((_, i) => (
            <div className="p-2 border flex-1" key={i}>
              <Input
                type="number"
@@ -71,10 +75,12 @@ export function HolesForScorecards({ onclose, setRefetch }) {
       ))}
   
       <div className="flex justify-center col-span-6 mt-4">
-        <Button color="primary" type="submit">
+        </div>
+      </div>
+      <br/>
+        <Button color="primary" type="submit" >
           Save
         </Button>
-      </div>
     </form>
   </div>
   

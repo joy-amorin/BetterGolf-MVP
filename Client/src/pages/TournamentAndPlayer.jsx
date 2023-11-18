@@ -3,7 +3,7 @@ import { DeleteIcon } from "../assets/DeleteIcon";
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
-import { Button } from '@nextui-org/react';
+import { HoleIcon } from '../assets/HoleIcon';
 import { useParams, useNavigate } from 'react-router-dom';
 
 
@@ -67,8 +67,8 @@ export function TournamentandPLayer() {
               <TableCell>
                 <div className="relative flex items-center gap-2">
                
-                  <Tooltip color="danger" content="Delete">
-                    <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                  <Tooltip color="danger" content="Remove player">
+                    <span className="text-3xl text-danger cursor-pointer active:opacity-50">
                       <DeleteIcon
                         onClick={async () => {
                           await deletePlayerInTournament(params.id, player.id);
@@ -82,9 +82,9 @@ export function TournamentandPLayer() {
               <TableCell>
                 <div className="relative flex items-center gap-2">
                
-                  <Tooltip color="warning" content="Delete">
-                    <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                      <DeleteIcon
+                  <Tooltip color="success" content="Add result by hole">
+                    <span className="text-3xl text-ambar-500 cursor-pointer active:opacity-50">
+                      <HoleIcon
                         onClick={async () => {
                           navigate(`/tournaments/${params.id}/result/${player.sId}`);
                         }}

@@ -7,6 +7,9 @@ import { UserIcon } from "../assets/UserIcon";
 import { ResultsIcon } from "../assets/ResultsIcon";
 import { Link, useNavigate } from "react-router-dom";
 import { CoursesIcon } from "../assets/CoursesIcon";
+import { SunIcon } from "../assets/SunIcon";
+import { PlayerIcon } from "../assets/PlayerIcon";
+import { CategoryIcon } from "../assets/CategoryIcon";
 
 
 export function SideBar() {
@@ -15,7 +18,7 @@ export function SideBar() {
     <div className="flex bg-zinc-900 text-slate-200 rounded-md  ">
       <Listbox
         aria-label="SideBar"
-        className="h-screen pl-2 pb-6 pt-2 gap-2 divide-y divide-default-300/50 dark:divide-default-100/80 max-w-[400px] overflow-visible shadow-sm dark:shadow-gray-800"
+        className="h-screen pl-2 pb-6 pt-2 gap-4 divide-y divide-default-300/50 dark:divide-default-100/80 max-w-[400px] overflow-visible shadow-sm dark:shadow-gray-800"
         itemClasses={{
           base: "px-3 rounded-none gap-3 h-12 data-[hover=true]:bg-default-100/80",
         }}
@@ -27,11 +30,11 @@ export function SideBar() {
           key="Tournaments"
           /* endContent={<ItemCounter number={13} />} */
           startContent={
-            <IconWrapper className="bg-success/10 text-success">
-              <TrophyIcon className=" text-xs  sm:text-lg" />
+            <IconWrapper className="bg-success/10 text-success ">
+              <TrophyIcon className=" text-lg  sm:text-4xl " />
             </IconWrapper>
           }
-        >
+       className=" gap-5 " >
           Tournaments
         </ListboxItem>
         <ListboxItem
@@ -41,10 +44,11 @@ export function SideBar() {
           key="Players"
           /* endContent={<ItemCounter number={13} />} */
           startContent={
-            <IconWrapper className="bg-success/10 text-success">
-              <UserIcon className="text-xs  sm:text-lg " />
+            <IconWrapper className="bg-success/10 text-success ">
+              <PlayerIcon className="text-xs  sm:text-4xl " />
             </IconWrapper>
           }
+          className="gap-5"
         >
           Players
         </ListboxItem>
@@ -56,10 +60,11 @@ export function SideBar() {
           /* endContent={<ItemCounter number={13} />} */
           startContent={
             <IconWrapper className="bg-success/10 text-success">
-              <CoursesIcon className="text-xs  sm:text-lg" />
+              <CoursesIcon className="text-4xl" />
             </IconWrapper>
           }
-        >
+          className="gap-5"
+          >
           Courses
         </ListboxItem>
         <ListboxItem
@@ -70,10 +75,11 @@ export function SideBar() {
           /* endContent={<ItemCounter number={13} />} */
           startContent={
             <IconWrapper className="bg-success/10 text-success">
-              <CoursesIcon className="text-lg " />
+              <CategoryIcon className="text-lg sm:text-4xl " />
             </IconWrapper>
           }
-        >
+          className="gap-5"
+          >
           Categories
         </ListboxItem>
       </Listbox>

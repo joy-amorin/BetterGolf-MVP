@@ -56,9 +56,9 @@ export function PlayersFormPage({ onclose, setRefetch }) {
   }, []);
 
   return (
-    <div className="max-w-xl mx-auto">
+    <div className="max-w-xl  items-center mr-16 ml-16">
       <form onSubmit={onSubmit}>
-        <div className="mb-3">
+        <div className="mb-3 ">
           <Input
             type="text"
             label="Name"
@@ -109,7 +109,7 @@ export function PlayersFormPage({ onclose, setRefetch }) {
           />
         </div>
         <Button
-          color="primary"
+          
           type="submit"
           onClick={() => {
             if (!params.id) {
@@ -118,6 +118,7 @@ export function PlayersFormPage({ onclose, setRefetch }) {
               cambiarValor;
             }
           }}
+          className="bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400"
         >
           Save
         </Button>

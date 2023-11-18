@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import {getRankingByIdTournament} from "../api/tournamentranking.api";
 
 
-export default function TournamentResult( id) {
+export function TournamentResult( { prueba }) {
   const [values, setValues] = useState([]);
-
+  console.log(prueba)
   const  fetchRanking = async () => {
-    const response = await getRankingByIdTournament(id);
+    const response = await getRankingByIdTournament(prueba);
+    console.log(response.data);
     const ranking = response.data;
     setValues(ranking);
   

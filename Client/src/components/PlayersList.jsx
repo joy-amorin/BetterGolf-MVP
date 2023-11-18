@@ -57,22 +57,22 @@ export function PlayersList({ refetch, setRefetch }) {
         <TableBody>
           {players.map((player) => (
             <TableRow key={player.id}>
-              <TableCell>{player.matriculaAUG}</TableCell>
-              <TableCell>{player.name}</TableCell>
-              <TableCell>{player.lastName}</TableCell>
-              <TableCell>{player.handicapIndex}</TableCell>
+              <TableCell className="text-lg">{player.matriculaAUG}</TableCell>
+              <TableCell className="text-lg">{player.name}</TableCell>
+              <TableCell className="text-lg">{player.lastName}</TableCell>
+              <TableCell className="text-lg">{player.handicapIndex}</TableCell>
 
               <TableCell>
                 <div className="relative flex items-center gap-6">
                   <Tooltip content="Edit">
                     <Link to={`/players/${player.id}`}>
-                      <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                      <span className="text-xl text-default-400 cursor-pointer active:opacity-50">
                         <EditIcon />
                       </span>
                     </Link>
                   </Tooltip>
                   <Tooltip color="danger" content="Delete">
-                    <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                    <span className="text-xl text-danger cursor-pointer active:opacity-50">
                       <DeleteIcon
                         onClick={async () => {
                           const accepted = window.confirm("Confirm");

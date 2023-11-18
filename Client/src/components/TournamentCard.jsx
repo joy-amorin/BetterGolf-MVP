@@ -7,7 +7,7 @@ import {
     CardFooter,
     Divider,
 } from "@nextui-org/react";
-import TournamentResult from "./TournamentResult";
+import {TournamentResult} from "./TournamentResult";
 
 export function TournamentCard({ tournament, finished }) {
   const navigate = useNavigate();

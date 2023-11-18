@@ -7,27 +7,30 @@ import {Link, useNavigate, useParams } from "react-router-dom";
 
 
 import { addcategorieToTournament } from "../api/tournaments.api";
+import { AddIcon } from "../assets/AddIcon";
 
 export function CategoryListForTournament( ) {
 // Creamos una variable para guardar las categorías originales
 const params = useParams()
 const navigate = useNavigate()
-const [originalCategories, setOriginalCategories] = useState([]);
+const [newFilteredCategory, setnewFilteredCategory] = useState([]);
 const [Category, setCategory] = useState([])
 
 useEffect(() => {
   async function loadCategory() {
-    // Solo cargamos las categorías si el arreglo original está vacío
-    if (originalCategories.length === 0) {
       const res = await getAllCategory();
-      // Guardamos las categorías originales en el estado
-      setOriginalCategories(res.data);
-      // Copiamos las categorías originales al arreglo Category
-      setCategory([...res.data]);
+      
+      setCategory(res.data);
+      setnewFilteredCategory(Category);
     }
-  }
+  
   loadCategory();
-}, [originalCategories.length]);
+  }, []);
+
+  const handleCategoryClick = (categoryId) => {
+    const FilteredCategory = newFilteredCategory.filter((category) => category.id !== categoryId);
+    setnewFilteredCategory(FilteredCategory);
+  }
 
 return (
   <div className="flex flex-col gap-3">
@@ -38,24 +41,24 @@ return (
       aria-label="Example static collection table"
     >
       <TableHeader>
-        <TableColumn>Name</TableColumn>
-        <TableColumn>Actions</TableColumn>
+        <TableColumn className="text-xl" >Category</TableColumn>
+        <TableColumn className="text-xl">Actions</TableColumn>
       </TableHeader>
       <TableBody>
-        {Category.map((category) => (
+        {newFilteredCategory.map((category) => (
           <TableRow key={category.id}>
             <TableCell>{category.name}</TableCell>
             <TableCell>
               <div className="relative flex items-center gap-2">
-                <Tooltip content="Edit">
+                <Tooltip content="Add category" color="succes">
                   <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                    <EditIcon
+                    <AddIcon
                       onClick={async () => {
                         addcategorieToTournament(params.id, category.id);
-                        // Usamos el arreglo original para filtrar la categoría que se agregó al torneo
-                        setCategory(originalCategories.filter(element => element.id !== category.id))
-                        console.log(Category)
+                        handleCategoryClick(category.id);
+                      
                       }}
+                      className="w-6 h-6 text-zinc-400  hover:bg-amber-600 active:bg-red-800"
                     />
                   </span>
                 </Tooltip>
