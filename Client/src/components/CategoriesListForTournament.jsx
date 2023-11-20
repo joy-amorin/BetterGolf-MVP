@@ -1,60 +1,83 @@
+
 import { useEffect, useState } from "react";
 import { getAllCategory } from "../api/categories.api";
 import { Table, TableHeader, TableBody, TableColumn, TableRow, TableCell, Tooltip, Button } from "@nextui-org/react";
 import { EditIcon } from "../assets/EditIcon";
-import { DeleteIcon } from "../assets/DeleteIcon";
 import {Link, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import { set } from "react-hook-form";
+
+
 import { addcategorieToTournament } from "../api/tournaments.api";
+import { AddIcon } from "../assets/AddIcon";
 
 export function CategoryListForTournament( ) {
-  const [Category, setCategory] = useState([]);
-  const params = useParams(); // para obtener el id de la url
-/*   const tournamentid = parseInt(params.id, 10) */
- const navigate = useNavigate();
-  useEffect(() => {
-    async function loadCategory() {
-      const res = await getAllCategory();
-      setCategory(res.data);
-    }
-    loadCategory();
-  }, [ ]);
+// Creamos una variable para guardar las categorías originales
+const params = useParams()
+const navigate = useNavigate()
+const [newFilteredCategory, setnewFilteredCategory] = useState([]);
+const [Category, setCategory] = useState([])
 
-  return (
-    <div className="flex flex-col gap-3">
-      <Table
-        color={"primary"}
-        selectionMode="single"
-        defaultSelectedKeys={["3"]}
-        aria-label="Example static collection table"
-      >
-        <TableHeader>
-          <TableColumn>Name</TableColumn>
-          <TableColumn>Actions</TableColumn>
-        </TableHeader>
-        <TableBody>
-          {Category.map((player) => (
-            <TableRow key={player.id}>
-              <TableCell>{player.name}</TableCell>
-              <TableCell>
-                <div className="relative flex items-center gap-2">
-                  <Tooltip content="Edit">
-                    <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                      <EditIcon
-                        onClick={async () => {
-                          addcategorieToTournament(params.id, player.id);
-                        }}
-                      />
-                    </span>
-                  </Tooltip>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <Button onClick={async () => {navigate(`/tournaments/${params.id}/categories`)}}> Pushme</Button>
-    </div>
-  );
+useEffect(() => {
+  async function loadCategory() {
+      const res = await getAllCategory();
+      
+      setCategory(res.data);
+      setnewFilteredCategory(Category);
+    }
+  
+  loadCategory();
+  }, []);
+
+  const handleCategoryClick = (categoryId) => {
+    const FilteredCategory = newFilteredCategory.filter((category) => category.id !== categoryId);
+    setnewFilteredCategory(FilteredCategory);
+  }
+
+return (
+  <div className="flex flex-col gap-3">
+    <Table
+      color={"primary"}
+      selectionMode="single"
+      defaultSelectedKeys={["3"]}
+      aria-label="Example static collection table"
+    >
+      <TableHeader>
+        <TableColumn className="text-xl" >Category</TableColumn>
+        <TableColumn className="text-xl">Actions</TableColumn>
+      </TableHeader>
+      <TableBody>
+        {newFilteredCategory.map((category) => (
+          <TableRow key={category.id}>
+            <TableCell>{category.name}</TableCell>
+            <TableCell>
+              <div className="relative flex items-center gap-2">
+                <Tooltip content="Add category" color="succes">
+                  <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                    <AddIcon
+                      onClick={async () => {
+                        addcategorieToTournament(params.id, category.id);
+                        handleCategoryClick(category.id);
+                      
+                      }}
+                      className="w-6 h-6 text-zinc-400  hover:bg-amber-600 active:bg-red-800"
+                    />
+                  </span>
+                </Tooltip>
+              </div>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+    
+    <Button
+      variant="shadow"
+      color="success"
+      onClick={async () => {navigate(`/tournaments/${params.id}/categories`)}} 
+       className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake" >
+         Go Back
+         </Button>
+  </div>
+);
+
 }
+

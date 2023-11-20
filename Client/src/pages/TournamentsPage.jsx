@@ -48,8 +48,10 @@ export function TournamentsPage() {
   };
 
   return (
+    
     <div>
-      <Button onPress={onOpen}>
+      
+      <Button onPress={onOpen} className="bg-purple-800 text-zinc-300">
         Create Tournament
         <Modal
           isOpen={isOpen}
@@ -61,7 +63,9 @@ export function TournamentsPage() {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader></ModalHeader>
+                <ModalHeader>
+                  
+                </ModalHeader>
                 <ModalBody>
                   <TournamentsFormPage
                     onClose={onClose}
@@ -79,10 +83,15 @@ export function TournamentsPage() {
             <TournamentsList
               refetch={refetch}
               status={activeTab.toLowerCase()}
+              valor={'actives'}
             />
           </Tab>
           <Tab key="completed" title="Completed">
-            {/* Empty Tab content */}
+          <TournamentsList
+              refetch={refetch}
+              status={activeTab.toLowerCase()}
+              valor={'completed'}
+            />
           </Tab>
         </Tabs>
       </div>

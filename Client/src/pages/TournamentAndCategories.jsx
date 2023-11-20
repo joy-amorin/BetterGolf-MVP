@@ -27,6 +27,7 @@ import { TournamentsFormPage } from "./TournamentsFormPage";
 import { toast } from "react-hot-toast";
 import { TournamentCategories } from "./TournamentCategories";
 
+
 export function TournamentCategoriesPage() {
   const [tournament, setTournament] = useState(null);
   const [numOfPlayers, setNumOfPlayers] = useState(null);
@@ -72,20 +73,27 @@ export function TournamentCategoriesPage() {
 
   return (
     <>
-      <div>
+      <div className="w-3/4 ml-32">
+      <Button
+      variant="shadow"
+      color="success"
+       onClick={async () => {navigate(`/tournaments/${params.id}`)}} 
+       className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake" >
+         Go Back
+         </Button>
         {tournament ? (
           <div>
-            <Card>
-              <CardHeader>
+            <Card className="bg-zinc-800 dark:bg-zinc-900 mt-7">
+              <CardHeader className="bg-zinc-700">
                 <h1 className="text-3xl font-bold">{tournament.name}</h1>
               </CardHeader>
               <Divider />
               <CardBody>
-                <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
+                <p className="mb-3 text-gray-700 dark:text-gray-500 text-tiny uppercase font-bold text-end">
                   {new Date(tournament.startDate).toLocaleDateString()} -{" "}
                   {new Date(tournament.endDate).toLocaleDateString()}
                 </p>
-                <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
+                <p className="mb-3 text-gray-700 dark:text-gray-500 text-tiny uppercase font-bold">
                   {tournament.tournamentType}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300">
@@ -93,7 +101,7 @@ export function TournamentCategoriesPage() {
                 </p>
               </CardBody>
               <CardFooter className="flex justify-between">
-                <Button onPress={() => handleOpen("")}>
+                <Button onPress={() => handleOpen("")} className="bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400">
                   Edit info
                   <Modal
                     size={"2xl"}
@@ -135,8 +143,8 @@ export function TournamentCategoriesPage() {
               </CardFooter>
             </Card>
             <Divider className="my-3" />
-            <Card>
-              <CardHeader>
+            <Card className="bg-zinc-800 dark:bg-zinc-900 mt-7">
+              <CardHeader className="bg-zinc-700">
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
                     ? `No Categories on ${tournament.name}`
@@ -147,7 +155,6 @@ export function TournamentCategoriesPage() {
               </CardHeader>
               <Divider />
               <CardBody>
-               {/*  <PlayersListForTournament tournamentId={id} /> */}
                <TournamentCategories />
               </CardBody>
               <CardFooter>
@@ -155,7 +162,7 @@ export function TournamentCategoriesPage() {
                   <Button
                     onClick={() => {
                       navigate(`/tournaments/${params.id}/addCategory`);
-                    }}
+                    }} className="bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400"
                   >
                     Add Category
                   </Button>

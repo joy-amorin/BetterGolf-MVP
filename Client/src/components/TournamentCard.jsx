@@ -7,33 +7,44 @@ import {
     CardFooter,
     Divider,
 } from "@nextui-org/react";
+import {TournamentResult} from "./TournamentResult";
 
-export function TournamentCard({ tournament }) {
+export function TournamentCard({ tournament, finished }) {
   const navigate = useNavigate();
   return (
-    <Card className="  transition ease-in-out delay-150 bg-gradient-to-r from-blue-500 to-blue-600 hover:-translate-y-1 hover:scale-110  duration-300 ... ml-4 mt-4 ">
+    <div className=" w-1/5 ml-26 ">
+
+    <Card className=" transition ease-in-out delay-150 bg-zinc-800 hover:-translate-y-1 hover:scale-110  duration-300 hover:rounded-none ... ml-4 mt-4  flex-1  shadow-sm shadow-slate-400 ">
         <div onClick={() => navigate(`/tournaments/${tournament.id}`)}>
-        <CardHeader >
-            <p className=" w-1/2 text-xs sm:text-lg text-start "> {tournament.tournamentType}</p>
-            <p className=" w-1/2 text-xs sm:text-lg text-end  ">Inicio:  {tournament.startDate}</p>
+        <CardHeader className="bg-zinc-700">
+            <p className=" w-3/4 text-xs sm:text-lg text-start not-italic font-bold-x-3 text-slate-300 "> {tournament.name}</p>
+          
+
+            <p className=" w-1/4 text-xs sm:text-md text-end text-slate-500 " > {tournament.tournamentType} Players: {tournament.playerCount}</p>        
+           
         </CardHeader>
-    </div>
         <Divider /> 
         <CardBody >
-            <p className=" text-xs sm:text-lg text-center">{tournament.name}</p>
-	    <p>Players: {tournament.playerCount}</p>
+          {!finished &&
+
+            <p className=" text-xs sm:text-md text-center  text-slate-400 line-clamp-3" > {tournament.description}</p>
+          
+}
+{finished &&
+          <TournamentResult id={tournament.id} />
+          }
+         
         </CardBody>
         <CardFooter >
-          {/* <div className="w-1/2">
-            <p onClick={ async () => {navigate(`/tournaments/${tournament.id}/players`)}}> Ver Jugadores</p>
-            </div> */}
        
-            <p onClick={ async () => { navigate(`/tournaments/${tournament.id}/addplayers`);}} className="w-1/2 text-start">Agregar Jugadores</p>
+            <p className="w-1/2 text-start  text-xs sm:text-md  text-slate-500 "> Inicio:  {tournament.startDate} </p>
             
           
-            <p className="text-md text-end w-1/2"> Fin: { tournament.endDate} </p>
+            <p className="text-md text-end w-1/2  text-xs sm:text-md  text-slate-500 "> Fin: { tournament.endDate}  </p>
             
             </CardFooter>
+    </div>
       </Card>
+    </div>
   );
 }

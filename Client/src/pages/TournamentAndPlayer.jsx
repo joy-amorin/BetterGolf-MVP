@@ -1,9 +1,9 @@
-import {  getAllPlayersInTournament, addPlayerToTournament, deletePlayerInTournament } from '../api/tournaments.api';
+import {  getAllPlayersInTournament, getAllScorecardsInTournament, deletePlayerInTournament } from '../api/tournaments.api';
 import { DeleteIcon } from "../assets/DeleteIcon";
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn } from "@nextui-org/react";
 import { Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
-import { Button } from '@nextui-org/react';
+import { HoleIcon } from '../assets/HoleIcon';
 import { useParams, useNavigate } from 'react-router-dom';
 
 
@@ -15,12 +15,23 @@ export function TournamentandPLayer() {
 
   useEffect(() => {
     async function fetchPlayers() {
-      if (params.id) {
+     
       const players = await getAllPlayersInTournament(params.id);
-      setPlayers(players.data);
+      const result = await  getAllScorecardsInTournament(params.id)
+      console.log(result)
+      const playersresult = players.data.map(player => {
+        for (let i = 0; i < result.data.length; i++) {
+          const element = result.data[i];
+          if (element.player === player.id) {
+            return {...player, totalStrokes: element.totalStrokes, sId: element.id}
+          }
+        }
+        return {...player, totalStrokes: 0, sId: 0}
+      })
+      setPlayers(playersresult);
       setRefetch(false);
       }
-    }
+    
     if (refetch){
     fetchPlayers();
     }
@@ -40,7 +51,9 @@ export function TournamentandPLayer() {
           <TableColumn>Name</TableColumn>
           <TableColumn>Last Name</TableColumn>
           <TableColumn>Handicap Index</TableColumn>
+          <TableColumn>Total Strokes</TableColumn>
           <TableColumn>Actions</TableColumn>
+          <TableColumn>Results</TableColumn>
         </TableHeader>
         <TableBody>
             {players.map((player) => (
@@ -49,22 +62,31 @@ export function TournamentandPLayer() {
               <TableCell>{player.name}</TableCell>
               <TableCell>{player.lastName}</TableCell>
               <TableCell>{player.handicapIndex}</TableCell>
+              <TableCell>{player.totalStrokes}</TableCell>
+              
               <TableCell>
                 <div className="relative flex items-center gap-2">
-                {/* <Tooltip content='Edit' color="foreground"> 
-                <span  className="text-lg text-danger cursor-pointer active:opacity-50"> 
-                <EditIcon
-                onClick={async () => 
-                { await addPlayerToTournament(player.id); setRefetch(!refetch); }} 
-                /> 
-                </span> 
-                </Tooltip> */}
-                  <Tooltip color="danger" content="Delete">
-                    <span className="text-lg text-danger cursor-pointer active:opacity-50">
+               
+                  <Tooltip color="danger" content="Remove player">
+                    <span className="text-3xl text-danger cursor-pointer active:opacity-50">
                       <DeleteIcon
                         onClick={async () => {
                           await deletePlayerInTournament(params.id, player.id);
                          setRefetch(true);
+                        }}
+                      />
+                    </span>
+                  </Tooltip>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="relative flex items-center gap-2">
+               
+                  <Tooltip color="success" content="Add result by hole">
+                    <span className="text-3xl text-ambar-500 cursor-pointer active:opacity-50">
+                      <HoleIcon
+                        onClick={async () => {
+                          navigate(`/tournaments/${params.id}/result/${player.sId}`);
                         }}
                       />
                     </span>

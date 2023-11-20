@@ -2,7 +2,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Image,
   CardFooter,
 } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
@@ -86,26 +85,26 @@ export function CoursesPage() {
       <div className="flex flex-wrap gap-4 mt-10 w-100%  ">
         {courses.map((course) => (
           <Card
-            className="py-1 w-40% mb-10 ml-11 bg-gradient-to-b from-blue-700 via-blue-800 to-gray-900"
+            className="py-1 w-40% mb-10 ml-11 bg-zinc-900"
             key={course.id}
           >
             <CardHeader
               onClick={async () => {
                 navigate(`/courses/${course.id}/`);
               }}
-              className="pb-1 pt-0 px-2 display-flex flex-row border-b border-1"
+              className="pb-1 pt-0 px-2  border-b bg-zinc-800"
             >
               <p className="text-2xl text-black-500 text-center">
                 {course.name}{" "}
               </p>
             </CardHeader>
-            <CardBody className="overflow-visible py-2">
+            <CardBody className="overflow-visible py-2 text-zinc-500">
               <div className="flex items-center justify-between px-2">
                 <p>Aca se pueden poner varias cosas </p>
               </div>
             </CardBody>
             <CardFooter>
-              <div className="flex justify-between items-center gap-10">
+              <div className="flex justify-between items-center gap-10 w-1/2">
                 <div className="flex gap-2 ">
                   <Tooltip content="Edit">
                     <Link to={`/courses/${course.id}`}>
@@ -133,24 +132,10 @@ export function CoursesPage() {
                     </span>
                   </Tooltip>
                 </div>
-                <div className="flex items-end ">
-                  <Dropdown>
-                    <DropdownTrigger>
-                      <Button variant="shadow" color="warning">
-                        Detalles
-                      </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu aria-label="Static Actions">
-                      <DropdownItem key="new">
-                        {" "}
-                        <Co valor={course.id} />
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                </div>
-                <Dropdown>
+                
+                <Dropdown >
       <DropdownTrigger>
-        <Button 
+        <Button className="ml-20"
           variant="shadow"
           color="default" 
         >

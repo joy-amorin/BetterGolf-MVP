@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   createCourse,
-  deleteCourse,
   updateCourse,
   getCourseById,
 } from "../api/courses.api";
@@ -60,9 +59,9 @@ export function CoursesFormPage({ onclose, setRefetch }) {
   }, []);
 
   return (
-		<div className="max-w-xl mx-auto w-2/4">
+		<div className="max-w-xl mx-auto w-3/4 mb-5">
 				<form onSubmit={onSubmit}>
-					<div className="mb-3">
+					<div className="mb-4">
 						<Input
 							type="text"
 							label="Course name"
@@ -70,7 +69,7 @@ export function CoursesFormPage({ onclose, setRefetch }) {
 							{...register("name", { required: true })}
 						/>
 					</div>
-					<div className="mb-3">
+					<div className="mb-4">
 						<Input
 							type="number"
 							label="Course slope"
@@ -78,7 +77,7 @@ export function CoursesFormPage({ onclose, setRefetch }) {
 							{...register("courseSlope", { required: true })}
 						/>
 					</div>
-					<div className="mb-3">
+					<div className="mb-4">
 						<Input
 							type="number"
 							label="Course rating"
@@ -86,28 +85,16 @@ export function CoursesFormPage({ onclose, setRefetch }) {
 							{...register("courseRating", { required: true })}
 						/>
 					</div>
-          <div className="flex justify-start mb-3">
+          <div className="flex gap-16 justify-center mb-4">
 					<Button color="primary" type="submit" onClick={() => {if (!params.id){onclose()}else{ setRefetch}}}>
 						Save
 					</Button>
+          <Button color="warning" onClick={onclose} >
+            Cancel
+          </Button>
       </div>
 			</form>
-  {params.id && (
-    <div className="flex justify-end">
-      <Button
-        color="danger"
-        onClick={async () => {
-          const accepted = window.confirm("Confirm");
-          if (accepted) {
-            await deleteCourse(params.id);
-            toast.success("Course deleted"), navigate("/course");
-          }
-        }}
-        >
-        Delete
-      </Button>
-    </div>
-  )}
+ 
 </div>
 );
 }
