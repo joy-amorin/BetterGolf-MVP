@@ -110,7 +110,7 @@ export function TournamentPage() {
     {(new Date(tournament.endDate) < currentDate) ? (
       <div>
       <p className="text-gray-400 text-center"> Tournament finished</p>
-      <TournamentResult prueba={tournament.id} />
+      <TournamentResult prueba={params.id} />
       <p className="text-gray-400 text-center"> {tournament.description}</p>
      </div>
     ) : (
@@ -153,7 +153,7 @@ export function TournamentPage() {
                       "Are you sure you want to delete this tournament?"
                     );
                     if (accepted) {
-                     const suceso = await deleteTournament(params.id);
+                      await deleteTournament(params.id);
                   
                       toast.success("Tournament deleted");
                       navigate("/tournaments");
