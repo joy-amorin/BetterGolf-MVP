@@ -12,7 +12,7 @@ export function Navigation() {
   return (
     
 
-    <Navbar position="static" className="bg-zinc-900 text-slate-200" >
+    <Navbar position="static" className=" bg-myAzul-700   dark:bg-zinc-900 dark:text-slate-200" >
       <div
         className="flex justify-between py-5 p-3"
         onClick={handleNavigate}

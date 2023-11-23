@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Tabs,
   Tab,
-  Card,
-  CardBody,
   Modal,
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Button,
   useDisclosure,
 } from "@nextui-org/react";
@@ -17,30 +14,8 @@ import { TournamentsList } from "../components/TournamentsList";
 
 export function TournamentsPage() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [size, setSize] = React.useState("md");
-  const [backdrop, setBackdrop] = React.useState("opaque");
-  const sizes = [
-    "xs",
-    "sm",
-    "md",
-    "lg",
-    "xl",
-    "2xl",
-    "3xl",
-    "4xl",
-    "5xl",
-    "full",
-  ];
-  const backdrops = ["opaque", "blur", "transparent"];
-  const handleOpen = (size) => {
-    setSize(size);
-    onOpen();
-  };
-  const handleBackdropChange = (newBackdrop) => {
-    setBackdrop(newBackdrop);
-  };
 
-  const [refetch, setRefetch] = React.useState(true);
+  const [refetch, setRefetch] = useState(true);
   const [activeTab, setActiveTab] = useState("actives"); // Agrega el estado para controlar la pestaña activa
 
   const handleRefetch = () => {
@@ -51,7 +26,7 @@ export function TournamentsPage() {
     
     <div>
       
-      <Button onPress={onOpen} className="bg-purple-800 text-zinc-300">
+      <Button onPress={onOpen} className=" bg-myColor-600 text-white  dark:bg-purple-800 dark:text-zinc-300">
         Create Tournament
         <Modal
           isOpen={isOpen}
@@ -91,7 +66,7 @@ export function TournamentsPage() {
               refetch={refetch}
               status={activeTab.toLowerCase()}
               valor={'completed'}
-            />
+           />
           </Tab>
         </Tabs>
       </div>
