@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { getAllTournaments } from "../api/tournaments.api";
 import { TournamentCard } from "./TournamentCard";
-import { set } from "react-hook-form";
 
 export function TournamentsList({ refetch, valor }) {
-  
   const [tournaments, setTournaments] = useState([]);
   const [finishedTournaments, setFinishedTournaments] = useState(false);
-
   const fetchTournaments = async () => {
     const response = await getAllTournaments();
     if (valor === "actives") {
@@ -15,6 +12,15 @@ export function TournamentsList({ refetch, valor }) {
       setTournaments(filteredTournaments);
       setFinishedTournaments(false);
       return;
+    }
+    else if (valor === "all") {
+      setTournaments(response.data);
+      setFinishedTournaments(false);
+    }
+    else if (valor === "pending") {
+      const filteredTournaments = response.data.filter(tournament => new Date(tournament.startDate) > new Date());
+      setTournaments(filteredTournaments);
+      setFinishedTournaments(false);
     }
     else  {
       const filteredTournaments = response.data.filter(tournament => new Date(tournament.endDate) < new Date());
