@@ -15,7 +15,7 @@ import { CategoryIcon } from "../assets/CategoryIcon";
 export function SideBar() {
   const navigate = useNavigate();
   return (
-    <div className="flex bg-zinc-900 text-slate-200 rounded-md  ">
+    <div className="flex bg-gray-300 dark:bg-zinc-900 dark:text-slate-200 rounded-md  ">
       <Listbox
         aria-label="SideBar"
         className="h-screen pl-2 pb-6 pt-2 gap-4 divide-y divide-default-300/50 dark:divide-default-100/80 max-w-[400px] overflow-visible shadow-sm dark:shadow-gray-800"

@@ -1,23 +1,20 @@
 import { Navigation } from "./components/Navigation";
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TournamentsPage } from "./pages/TournamentsPage";
 import { TournamentsFormPage } from "./pages/TournamentsFormPage";
 import { PlayersPage } from "./pages/PlayersPage";
 import { PlayersFormPage } from "./pages/PlayersFormPage";
-import { HomePage } from "./pages/HomePage";
 import { SideBar } from "./components/SideBar";
 import { CoursesPage } from "./pages/CoursesPage";
 import { CoursesFormPage } from "./pages/CoursesFormPage";
 import { CategoriesFormPage } from "./pages/CategoriesFormPage";
 import { TournamentandPLayer } from "./pages/TournamentAndPlayer";
 import { PlayersListForTournament } from "./components/PlayersListForTournament";
-import { CoursesAndHole } from "./pages/CoursesAndHoles";
 import { TournamentPage } from "./pages/TournamentPageId";
 import { Divider } from "@nextui-org/react";
 import { CoursePageId } from "./pages/CoursePageId";
 import { Categorias } from "./pages/Categorias";
-import { TournamentCategories } from "./pages/TournamentCategories";
 import { TournamentCategoriesPage } from "./pages/TournamentAndCategories";
 import { CategoryListForTournament } from "./components/CategoriesListForTournament";
 import { AddHolesInCourse } from "./pages/AddHolesInCourse";
@@ -25,7 +22,7 @@ import { HolesFormUpdate } from "./pages/FormPageForUpdateHole";
 import { HolesForScorecards } from "./pages/HolesForPlayers";
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter className="  bg-zinc-200 dark:bg-black">
     <div>
       <Toaster
         position="top-center"
@@ -42,7 +39,7 @@ function App() {
         <div className="w-1/4 sm:w-1/5 md:w-1/6 lg:w-1/8 xl:w-1/10">
           <SideBar />
         </div>
-        <div className="flex-1 p-6 bg-black ">
+        <div className="flex-1 p-6 bg-zinc-200 dark:bg-black ">
           <Routes>
             <Route path="/" element={<TournamentsPage />} />
             <Route path="/tournaments" element={<TournamentsPage />} />
