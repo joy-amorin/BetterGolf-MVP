@@ -31,7 +31,7 @@ export function TournamentCard({ tournament, finished }) {
           
 }
 {finished &&
-          <TournamentResult id={tournament.id} />
+         <p className="text-gray-400 text-center"> Tournament finished</p>
           }
          
         </CardBody>

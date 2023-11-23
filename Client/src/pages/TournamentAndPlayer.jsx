@@ -5,6 +5,7 @@ import { Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
 import { HoleIcon } from '../assets/HoleIcon';
 import { useParams, useNavigate } from 'react-router-dom';
+import { setScoreCard } from '../api/scorecard.api';
 
 
 export function TournamentandPLayer() {
@@ -86,6 +87,7 @@ export function TournamentandPLayer() {
                     <span className="text-3xl text-ambar-500 cursor-pointer active:opacity-50">
                       <HoleIcon
                         onClick={async () => {
+                          
                           navigate(`/tournaments/${params.id}/result/${player.sId}`);
                         }}
                       />

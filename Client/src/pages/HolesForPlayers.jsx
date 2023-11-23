@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { scoreCardResults } from "../api/scorecard.api";
+import { scoreCardResults } from "../api/scorecardresult.api";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -11,6 +11,7 @@ import {
   SelectSection,
   SelectItem,
 } from "@nextui-org/react";
+import { setScoreCard } from "../api/scorecard.api";
 
 export function HolesForScorecards({ onclose, setRefetch }) {
   const {
@@ -78,7 +79,7 @@ export function HolesForScorecards({ onclose, setRefetch }) {
         </div>
       </div>
       <br/>
-        <Button color="primary" type="submit" >
+        <Button color="primary" type="submit" onClick={setScoreCard(params.id)}>
           Save
         </Button>
     </form>
