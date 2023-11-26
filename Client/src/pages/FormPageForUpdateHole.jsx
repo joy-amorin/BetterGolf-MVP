@@ -45,6 +45,14 @@ export function HolesFormUpdate({ onclose, setRefetch }) {
 
   return (
 		<div className="max-w-xl mx-auto">
+			<Button
+      variant="shadow"
+      color="success"
+      onClick={async () => {navigate(`/tournaments`)}} 
+      className="bg-myColor-200 dark:bg-teal-500 dark:hover:bg-teal-400 dark:text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake  " >
+         Go Back
+         </Button>
+				<br/>
 			<form onSubmit={onSubmit}>
 				<div className="mb-3">
 					<Input

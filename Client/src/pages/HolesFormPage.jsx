@@ -6,7 +6,7 @@ import {
 } from "../api/holes.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { Button, Input, Select, SelectSection, SelectItem } from "@nextui-org/react";
+import { Button, Input,  } from "@nextui-org/react";
 import { addHoleToCourse } from "../api/courses.api";
 
 export function HolesFormPage({ onclose, setRefetch }) {

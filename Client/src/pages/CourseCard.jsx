@@ -1,5 +1,7 @@
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react'
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { Card, CardHeader, CardBody} from "@nextui-org/react";
+import { deleteCourse } from '../api/courses.api';
+import { DeleteIcon } from '../assets/DeleteIcon';
 
 export function CardForTournaments({setRefetch, course}) {
 <Card className="py-1 w-5/6 ml-11 bg-gradient-to-r from-green-500 to-blue-500 bg-opacity-10" 

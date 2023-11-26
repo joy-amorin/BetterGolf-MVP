@@ -21,6 +21,6 @@ export const deleteHolesInCourses = (tid, pid) => courseApi.delete(`/${tid}/hole
 
 export const addHole = (id, hole) => courseApi.post(`/${id}/holes`, hole);
 
-export const addHoleToCourse = (tid, holeid) => courseApi.post(`/${tid}/holes?courseId=${tid}&holeId=${holeid}`);
+export const addHoleToCourse = (tid, course) => courseApi.post(`/${tid}/holes`, course);
 
 export const updateHoleInCourse = (tid, holeid, hole) => courseApi.put(`/${tid}/holes/${holeid}?courseId=${tid}&holeId=${holeid}`, hole);

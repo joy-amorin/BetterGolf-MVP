@@ -13,7 +13,6 @@ import {
 import { Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { PlayersList } from "../components/PlayersList";
 import { HolesFormPage } from "./HolesFormPage";
 
 export function AddHolesInCourse() {
@@ -39,7 +38,7 @@ export function AddHolesInCourse() {
 
   return (
     <div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 w-3/4 ml-16">
         <Table
           color={"primary"}
           selectionMode="single"

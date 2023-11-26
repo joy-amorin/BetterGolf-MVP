@@ -33,7 +33,7 @@ useEffect(() => {
   }
 
 return (
-  <div className="flex flex-col gap-3">
+  <div className="flex flex-col gap-3 w-3/4 ml-16">
     <Table
       color={"primary"}
       selectionMode="single"
@@ -73,7 +73,7 @@ return (
       variant="shadow"
       color="success"
       onClick={async () => {navigate(`/tournaments/${params.id}/categories`)}} 
-       className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake" >
+       className="bg-myColor-200 dark:bg-teal-500 dark:hover:bg-teal-400 dark:text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake  ">
          Go Back
          </Button>
   </div>
