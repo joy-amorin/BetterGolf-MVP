@@ -76,7 +76,7 @@ export function PlayersListForTournament( ) {
       <Button
       variant="shadow"
       color="success"
-       onClick={async () => {navigate(`/tournaments/${params.id}`)}} className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake" > Go Back</Button>
+       onClick={async () => {navigate(`/tournaments/${params.id}`)}} className="bg-myColor-200 dark:bg-teal-500 dark:hover:bg-teal-400 dark:text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake  "> Go Back</Button>
     </div>
   );
 }

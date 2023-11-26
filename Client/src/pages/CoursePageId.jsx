@@ -86,26 +86,26 @@ export function CoursePageId() {
 <Button 
 variant="shadow"
 color="default"
-onClick={() => navigate(`/courses/${params.id}/EditHole/1`)} className="bg-amber-950">Edit Holes in Course</Button>
+onClick={() => navigate(`/courses/${params.id}/EditHole/1`)} className="bg-myColor-400 hover:bg-myColor-300 dark:bg-amber-950 dark:hover:bg-amber-700">Edit Holes in Course</Button>
 </div>
 <div className=" flex justify-end items-start"> 
 <Button
 variant="shadow"
 color="succes"
 onClick={async () => {navigate(`/tournaments`)}} 
-className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake  " >
+className="bg-myColor-200 dark:bg-teal-500 dark:hover:bg-teal-400 dark:text-white font-bold py-3 px-6 rounded w-1/6 transition transform active:shake ">
  Go Back
  </Button>
  </div>
 </div>
         {course ? (
           <div>
-            <Card className="bg-zinc-800 dark:bg-zinc-900 mt-7">
-              <CardHeader className="bg-zinc-700">
+            <Card className=" dark:bg-zinc-900 mt-7">
+              <CardHeader className="bg-sky-300  dark:bg-zinc-700">
                 <h1 className="text-3xl font-bold">{course.name}</h1>
               </CardHeader>
               <Divider />
-              <CardBody>
+              <CardBody className=" bg-neutral-100 text-neutral-800 dark:bg-zinc-800">
                 <p className="mb-3 text-gray-700 dark:text-gray-300 text-tiny uppercase font-bold">
                  Slope :  { course.courseSlope}
                 </p>
@@ -116,8 +116,8 @@ className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded 
                  Par :  {course.par}
                 </p>
               </CardBody>
-              <CardFooter className="flex justify-between">
-                <Button onPress={() => handleOpen("")} className="bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400">
+              <CardFooter className="flex justify-between  bg-neutral-100 dark:bg-zinc-800">
+                <Button onPress={() => handleOpen("")} className=" bg-myAzul-900 border-black hover:bg-myAzul-800 hover:border-zinc-800 dark:bg-purple-600 text-white border dark:border-purple-600 shadow-md dark:hover:bg-purple-800 dark:hover:border-purple-400">
                   Edit info
                   <Modal
                     size={"1xl"}
@@ -160,7 +160,7 @@ className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded 
             </Card>
             <Divider className="my-3" />
             <Card className="bg-zinc-800 dark:bg-zinc-900 mt-7">
-              <CardHeader>
+              <CardHeader className="bg-gray-500  dark:bg-zinc-700">
                 <h1 className="text-3xl font-bold">
                   {numOfPlayers === 0
                     ? `No Holes on ${course.name}`
@@ -170,17 +170,17 @@ className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded 
                 </h1>
               </CardHeader>
               <Divider />
-              <CardBody className=" overflow-y-auto h-40">
+              <CardBody className=" overflow-y-auto h-40  bg-neutral-100 text-neutral-800 dark:bg-zinc-800">
              
                <CoursesAndHole  />
               </CardBody>
-              <CardFooter>
+              <CardFooter className=" bg-neutral-100 text-neutral-800 dark:bg-zinc-800">
                 {params.id && (
                   <Button
                     onClick={() => {
                       navigate(`/Courses/${params.id}/holes`);
                     }}
-                    className="bg-purple-600 text-white border border-purple-600 shadow-md hover:bg-purple-800 hover:border-purple-400"
+                    className=" bg-myAzul-900 border-black hover:bg-myAzul-800 hover:border-zinc-800 dark:bg-purple-600 text-white border dark:border-purple-600 shadow-md dark:hover:bg-purple-800 dark:hover:border-purple-400"
                   >
                     Add Holes
                   </Button>

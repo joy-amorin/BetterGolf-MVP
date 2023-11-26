@@ -55,7 +55,7 @@ export function CoursesPage() {
   return (
     <div className="w-80%">
       <div className="w-3/4 ml-10">
-        <Button onPress={onOpen} color="primary" className="mb-1">
+        <Button onPress={onOpen} color="primary" className="mb-1  bg-myAzul-800 border-black hover:bg-myAzul-700 hover:border-zinc-800 dark:bg-purple-600 text-white border dark:border-purple-600 shadow-md dark:hover:bg-purple-800 dark:hover:border-purple-400">
           Add Course
         </Button>
         <Modal
@@ -82,17 +82,17 @@ export function CoursesPage() {
           </ModalContent>
         </Modal>
       </div>
-      <div className="flex flex-wrap gap-4 mt-10 w-100%  ">
+      <div className="flex flex-wrap gap-4 mt-10 w-full  ">
         {courses.map((course) => (
           <Card
-            className="py-1 w-40% mb-10 ml-11 bg-zinc-900"
+            className="py-1 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-md mb-10 ml-5 bg-zinc-900"
             key={course.id}
           >
             <CardHeader
               onClick={async () => {
                 navigate(`/courses/${course.id}/`);
               }}
-              className="pb-1 pt-0 px-2  border-b bg-zinc-800"
+              className="pb-1 pt-0 px-2  border-b bg-slate-500 dark:bg-zinc-800"
             >
               <p className="text-2xl text-black-500 text-center">
                 {course.name}{" "}
@@ -104,7 +104,7 @@ export function CoursesPage() {
               </div>
             </CardBody>
             <CardFooter>
-              <div className="flex justify-between items-center gap-10 w-1/2">
+              <div className="flex justify-between items-center  w-full sm:3/4 md:1/2">
                 <div className="flex gap-2 ">
                   <Tooltip content="Edit">
                     <Link to={`/courses/${course.id}`}>

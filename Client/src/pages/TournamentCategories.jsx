@@ -40,8 +40,7 @@ export function TournamentCategories() {
       >
         <TableHeader>
           
-          <TableColumn>Name</TableColumn>
-          {/* <TableColumn> Scorecard</TableColumn> */}
+          <TableColumn>Name</TableColumn> 
           <TableColumn>Sex</TableColumn>
           <TableColumn>Count</TableColumn>
           <TableColumn>Actions</TableColumn>
@@ -50,7 +49,7 @@ export function TournamentCategories() {
             {categories.map((categorie) => (
             <TableRow key={categorie.id}>
               <TableCell>{categorie.name}</TableCell>
-              {/* <TableCell>{scorecard.playingHandicap}</TableCell> */}
+              
               <TableCell>{categorie.sex}</TableCell>
               <TableCell>{categorie.count}</TableCell>
               <TableCell>
